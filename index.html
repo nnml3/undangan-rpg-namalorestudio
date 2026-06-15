@@ -3,1074 +3,1575 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Fulan & Fulanah Wedding</title>
+<title>The Wedding Of Design & Preset</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{width:100%;height:100%;background:#0a0a1e;overflow:hidden;font-family:'Press Start 2P',monospace;}
+html,body{width:100%;height:100%;overflow:hidden;background:#2d1b69;font-family:'Press Start 2P',monospace;}
+canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;}
 
-/* OPENING */
-#opening{
-  position:fixed;inset:0;z-index:100;
-  background:radial-gradient(ellipse at 50% 60%,#1a0a3e 0%,#0a0a1e 100%);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+/* ===== OPENING SCREEN ===== */
+#screen-open{
+  position:fixed;inset:0;z-index:200;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#1a0d3d 0%,#2d1b5e 40%,#4a1f3a 100%);
+  overflow:hidden;
 }
-.star-field{position:absolute;inset:0;pointer-events:none;}
-.px-star{position:absolute;background:#fff;image-rendering:pixelated;}
-@keyframes twk{0%,100%{opacity:1}50%{opacity:.15}}
-
-.o-moon{position:absolute;top:12%;right:15%;width:48px;height:48px;background:#ffeaa0;box-shadow:4px 4px 0 #e8d060;image-rendering:pixelated;}
-.o-moon::after{content:'';position:absolute;top:6px;right:6px;width:18px;height:18px;background:#e8d060;border-radius:0;}
-
-.lantern{position:absolute;animation:sway 3s ease-in-out infinite alternate;}
-.lantern:nth-child(2){left:8%;top:20%;animation-delay:-.5s;}
-.lantern:nth-child(3){right:8%;top:20%;animation-delay:-1s;}
-@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
-.lantern-body{width:24px;height:32px;background:#e85d04;border:2px solid #9d2800;position:relative;}
-.lantern-body::before{content:'';position:absolute;top:-8px;left:8px;width:8px;height:8px;background:#9d2800;}
-.lantern-body::after{content:'';position:absolute;bottom:-10px;left:8px;width:8px;height:10px;background:#e85d04;}
-.lantern-glow{position:absolute;inset:-8px;background:rgba(255,150,0,.15);}
-
-.o-title{
-  font-size:clamp(18px,5vw,32px);color:#fff;text-align:center;
-  text-shadow:0 0 0 #7b2d8b,4px 4px 0 #7b2d8b,8px 8px 0 #4a1a5e;
-  line-height:1.8;z-index:1;margin-bottom:12px;
-  animation:titleIn 1s steps(1) forwards;
+#screen-open canvas{position:absolute;inset:0;pointer-events:none;}
+.open-content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:20px;text-align:center;
 }
-@keyframes titleIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.o-divider{display:flex;align-items:center;gap:12px;z-index:1;margin-bottom:10px;}
-.o-divider span{color:#c9a0dc;font-size:10px;}
-.o-divider::before,.o-divider::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,transparent,#7b2d8b,transparent);}
-.o-date{color:#e8c5ff;font-size:10px;z-index:1;margin-bottom:32px;text-shadow:2px 2px 0 #7b2d8b;}
-
-.o-hearts{display:flex;gap:8px;z-index:1;margin-bottom:28px;}
-.px-heart{width:16px;height:16px;position:relative;image-rendering:pixelated;}
-.px-heart svg{width:16px;height:16px;}
-@keyframes hpop{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
-
-#open-btn{
-  position:relative;z-index:10;
-  background:#7b2d8b;color:#fff;
-  border:4px solid #e8c5ff;
-  font-family:'Press Start 2P',monospace;font-size:11px;
-  padding:16px 32px;cursor:pointer;
-  box-shadow:6px 6px 0 #4a1a5e,-2px -2px 0 #b060d0;
-  transition:box-shadow .1s,transform .1s;
-  -webkit-tap-highlight-color:transparent;
+.open-eyebrow{
+  font-size:clamp(7px,1.8vw,10px);
+  color:#d4a0ff;letter-spacing:4px;
+  text-shadow:2px 2px 0 #7b2d8b;
+  margin-bottom:4px;
+}
+.open-title{
+  font-size:clamp(18px,5vw,36px);
+  color:#fff;
+  text-shadow:3px 3px 0 #7b2d8b,6px 6px 0 #4a1f3a;
+  line-height:1.4;margin-bottom:4px;
+}
+.open-hearts{font-size:clamp(14px,3vw,22px);color:#ff6b8a;animation:heartbeat 1.2s ease-in-out infinite;}
+.open-date{
+  font-size:clamp(8px,2vw,12px);color:#d4a0ff;
+  border:3px solid #7b2d8b;padding:8px 20px;
+  background:rgba(0,0,0,0.3);
+  box-shadow:0 0 20px rgba(123,45,139,0.5);
+  margin:8px 0;
+}
+.open-btn{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(8px,1.8vw,11px);
+  background:transparent;border:3px solid #d4a0ff;
+  color:#d4a0ff;padding:14px 32px;
+  cursor:pointer;margin-top:12px;
+  transition:all 0.2s;
+  animation:glowpulse 2s ease-in-out infinite alternate;
   touch-action:manipulation;
 }
-#open-btn:hover{background:#9b3dab;}
-#open-btn:active,#open-btn.pressed{transform:translate(4px,4px);box-shadow:2px 2px 0 #4a1a5e;}
-@keyframes btnblink{0%,100%{border-color:#e8c5ff}50%{border-color:#c9a0dc}}
-.btn-anim{animation:btnblink 1.2s steps(1) infinite;}
+.open-btn:hover,.open-btn:active{background:rgba(123,45,139,0.4);color:#fff;border-color:#fff;}
+@keyframes heartbeat{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+@keyframes glowpulse{from{box-shadow:0 0 8px #d4a0ff;}to{box-shadow:0 0 24px #d4a0ff,0 0 48px #7b2d8b;}}
 
-/* GAME */
-#game{position:fixed;inset:0;display:none;background:#1a0a2e;overflow:hidden;}
-canvas#gc{display:block;image-rendering:pixelated;image-rendering:crisp-edges;}
+/* ===== GAME CANVAS ===== */
+#game-wrap{position:fixed;inset:0;z-index:10;display:none;}
+#game-canvas{width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges;}
 
-/* DIALOG BOX - RPG style */
-#dlg{
-  position:fixed;bottom:0;left:0;right:0;z-index:60;display:none;
-  background:#0d0820;border-top:4px solid #c9a0dc;
-  padding:0;
-}
-.dlg-inner{padding:14px 18px 16px;position:relative;min-height:100px;}
-#dlg-face{
-  position:absolute;left:16px;top:-52px;
-  width:48px;height:48px;image-rendering:pixelated;
-}
-.dlg-content{margin-left:0;}
-#dlg-name{
-  font-size:8px;color:#e8c5ff;margin-bottom:8px;
-  background:#1a0a3e;display:inline-block;padding:4px 10px;
-  border:2px solid #7b2d8b;
-}
-#dlg-text{font-size:clamp(14px,3.5vw,18px);color:#fff;line-height:1.7;font-family:'Press Start 2P',monospace;}
-#dlg-choices{margin-top:10px;}
-.dlg-choice{
-  display:block;color:#c9a0dc;padding:5px 8px;cursor:pointer;
-  font-size:clamp(10px,2.5vw,13px);border-left:3px solid transparent;
-  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
-}
-.dlg-choice:hover,.dlg-choice:active,.dlg-choice.sel{
-  color:#fff;border-left-color:#c9a0dc;background:rgba(123,45,139,.3);
-}
-#dlg-arrow{position:absolute;bottom:12px;right:16px;color:#c9a0dc;font-size:16px;animation:blink 1s steps(1) infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.dlg-tap-hint{position:absolute;bottom:12px;right:16px;font-size:8px;color:#7b6b8b;animation:blink 1.5s steps(1) infinite;}
-
-/* POPUP */
-#pop{
-  position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.88);
-  display:none;align-items:center;justify-content:center;padding:12px;
-  touch-action:pan-y;
-}
-#pop.on{display:flex;}
-#pop-box{
-  background:#0d0820;border:4px solid #c9a0dc;
-  max-width:500px;width:100%;max-height:92vh;
-  overflow-y:auto;position:relative;
-  box-shadow:8px 8px 0 #7b2d8b;
-}
-#pop-head{
-  background:#1a0a3e;border-bottom:3px solid #7b2d8b;
-  padding:12px 16px;display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:1;
-}
-#pop-title{font-size:9px;color:#e8c5ff;text-shadow:2px 2px 0 #7b2d8b;}
-#pop-x{
-  background:#7b2d8b;border:2px solid #e8c5ff;color:#fff;
-  font-family:'Press Start 2P',monospace;font-size:7px;
-  padding:6px 8px;cursor:pointer;
-  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
-}
-#pop-body{padding:16px;color:#c9a0dc;font-size:clamp(13px,3vw,16px);line-height:1.7;font-family:'Press Start 2P',monospace;}
-#pop-body h3{font-size:8px;color:#e8c5ff;margin:14px 0 8px;border-left:3px solid #7b2d8b;padding-left:8px;}
-#pop-body p{margin-bottom:8px;font-size:clamp(11px,2.5vw,14px);}
-.ecard{background:#1a0a3e;border:2px solid #7b2d8b;padding:12px;margin-bottom:10px;}
-.ecard-title{font-size:7px;color:#e8c5ff;margin-bottom:6px;}
-.cdown{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0 4px;}
-.cu{background:#1a0a3e;border:2px solid #7b2d8b;text-align:center;padding:8px 4px;}
-.cn{font-size:clamp(14px,4vw,20px);color:#e8c5ff;display:block;}
-.cl{font-size:8px;color:#7b6b9b;}
-#pop-body input,#pop-body select,#pop-body textarea{
-  width:100%;background:#0a0615;border:2px solid #7b2d8b;
-  color:#e8c5ff;font-family:'Press Start 2P',monospace;
-  font-size:clamp(10px,2.5vw,13px);padding:10px;margin-bottom:10px;outline:none;
-  -webkit-tap-highlight-color:transparent;
-}
-#pop-body textarea{height:80px;resize:none;}
-.pbtn{
-  background:#7b2d8b;border:3px solid #e8c5ff;color:#fff;
-  font-family:'Press Start 2P',monospace;font-size:8px;
-  padding:12px;cursor:pointer;box-shadow:4px 4px 0 #4a1a5e;
-  width:100%;display:block;margin-top:4px;
-  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
-}
-.pbtn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #4a1a5e;}
-.uitem{background:#1a0a3e;border:2px solid #7b2d8b;padding:10px;margin-bottom:8px;}
-.uname{font-size:7px;color:#e8c5ff;margin-bottom:4px;}
-.utext{font-size:clamp(11px,2.5vw,14px);color:#c9a0dc;}
-#ulist{max-height:160px;overflow-y:auto;margin-top:8px;}
-
-/* CONTROLS */
-#controls{position:fixed;bottom:0;left:0;right:0;z-index:55;display:none;pointer-events:none;}
-#dpad{
-  position:absolute;bottom:16px;left:16px;
-  width:110px;height:74px;pointer-events:all;
-}
-.db{
-  position:absolute;width:34px;height:34px;
-  background:rgba(10,6,30,.85);border:3px solid #7b2d8b;
-  color:#c9a0dc;font-size:16px;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;
-  box-shadow:3px 3px 0 #4a1a5e;
-}
-.db:active,.db.pressed{background:#7b2d8b;transform:translate(2px,2px);box-shadow:1px 1px 0 #4a1a5e;}
-#dl{left:0;top:20px;}#dr{right:0;top:20px;}#du{left:38px;top:0;}#dd{left:38px;bottom:0;}
-
-#abtn{
-  position:absolute;bottom:16px;right:16px;pointer-events:all;
-  background:#7b2d8b;border:3px solid #e8c5ff;color:#fff;
-  font-family:'Press Start 2P',monospace;font-size:8px;
-  padding:14px 12px;cursor:pointer;box-shadow:4px 4px 0 #4a1a5e;
-  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
-}
-#abtn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #4a1a5e;}
-#mbtn{
-  position:fixed;top:8px;right:8px;z-index:56;
-  background:rgba(10,6,30,.9);border:2px solid #7b2d8b;
-  color:#c9a0dc;font-family:'Press Start 2P',monospace;font-size:8px;
-  padding:6px 8px;cursor:pointer;display:none;
-  -webkit-tap-highlight-color:transparent;
-}
-
-/* HUD */
-#hud{
-  position:fixed;top:0;left:0;right:0;z-index:54;display:none;
+/* ===== INTERACTION BUBBLE ===== */
+#interact-hint{
+  position:fixed;bottom:100px;left:50%;transform:translateX(-50%);
+  background:#2d1b5e;border:3px solid #d4a0ff;
+  padding:8px 16px;
+  font-size:clamp(7px,1.5vw,9px);color:#d4a0ff;
+  display:none;z-index:60;
+  animation:floatup 1s ease-in-out infinite alternate;
   pointer-events:none;
-}
-#hud-bar{
-  background:rgba(10,6,30,.9);border-bottom:3px solid #7b2d8b;
-  padding:6px 12px;display:flex;align-items:center;gap:16px;
-}
-#hud-loc{font-size:7px;color:#e8c5ff;}
-#hud-tip{font-size:6px;color:#7b6b9b;margin-left:auto;}
-
-/* INTERACT BUBBLE */
-#ibubble{
-  position:fixed;z-index:56;display:none;
-  background:#0d0820;border:3px solid #c9a0dc;
-  font-size:7px;color:#e8c5ff;padding:7px 12px;
-  box-shadow:3px 3px 0 #7b2d8b;pointer-events:none;
   white-space:nowrap;
 }
+#interact-hint::before{
+  content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
+  width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+  border-top:8px solid #d4a0ff;
+}
+@keyframes floatup{from{transform:translateX(-50%) translateY(0);}to{transform:translateX(-50%) translateY(-6px);}}
 
-/* TRANSITION */
-#tr{position:fixed;inset:0;z-index:200;background:#0a0a1e;opacity:0;pointer-events:none;transition:opacity .5s;}
-#tr.on{opacity:1;pointer-events:all;}
+/* ===== POPUP ===== */
+#popup-overlay{
+  position:fixed;inset:0;z-index:150;
+  background:rgba(10,6,30,0.9);
+  display:none;align-items:center;justify-content:center;
+  padding:12px;
+}
+#popup-overlay.show{display:flex;}
+#popup-box{
+  background:#1a0d3d;
+  border:4px solid #7b2d8b;
+  max-width:420px;width:100%;
+  max-height:90vh;overflow-y:auto;
+  padding:0;
+  position:relative;
+  box-shadow:0 0 40px rgba(123,45,139,0.6),inset 0 0 40px rgba(0,0,0,0.3);
+}
+.popup-inner{padding:24px 20px 20px;}
+.popup-close{
+  position:absolute;top:8px;right:10px;
+  font-family:'Press Start 2P',monospace;
+  font-size:10px;color:#d4a0ff;background:transparent;border:none;cursor:pointer;
+  z-index:2;padding:4px 8px;
+}
+.popup-close:hover{color:#fff;}
+.popup-title{
+  font-size:clamp(10px,2.5vw,14px);color:#fff;
+  text-align:center;margin-bottom:16px;
+  text-shadow:2px 2px 0 #7b2d8b;
+  border-bottom:3px solid #7b2d8b;padding-bottom:12px;
+}
+
+/* Scroll UI */
+.scroll-wrapper{
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><rect width="4" height="4" fill="%23c4a265"/><rect x="0" y="0" width="2" height="2" fill="%23d4b07a"/></svg>') repeat;
+  border:4px solid #8b6914;padding:20px;
+  color:#3d1f00;
+  box-shadow:inset 0 0 20px rgba(0,0,0,0.3);
+}
+.scroll-top,.scroll-bottom{
+  height:20px;background:#8b6914;
+  margin:-20px -20px 12px;border-radius:3px;
+}
+.scroll-bottom{margin:-4px -20px -20px;margin-top:12px;}
+.scroll-text{
+  font-family:'VT323',monospace;font-size:clamp(16px,4vw,20px);
+  line-height:1.7;color:#3d1f00;text-align:center;
+}
+.scroll-title{
+  font-size:clamp(12px,3vw,16px);color:#3d1f00;
+  text-align:center;margin-bottom:8px;font-family:'Press Start 2P',monospace;
+}
+.btn-primary{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(7px,1.6vw,10px);
+  background:#5e3a0a;border:3px solid #8b6914;
+  color:#f0d080;padding:12px 24px;
+  cursor:pointer;display:block;width:100%;margin-top:16px;
+  text-align:center;
+  box-shadow:0 4px 0 #3d2006;
+  transition:all 0.1s;touch-action:manipulation;
+}
+.btn-primary:active{transform:translateY(4px);box-shadow:none;}
+
+/* Timeline */
+.timeline{display:flex;flex-direction:column;gap:16px;padding:8px 0;}
+.timeline-item{
+  background:rgba(255,255,255,0.05);border:2px solid #7b2d8b;
+  padding:12px;position:relative;padding-left:50px;
+}
+.timeline-icon{
+  position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  font-size:20px;
+}
+.timeline-label{font-size:clamp(7px,1.4vw,9px);color:#d4a0ff;margin-bottom:4px;}
+.timeline-text{font-family:'VT323',monospace;font-size:clamp(14px,3vw,17px);color:#fff;line-height:1.5;}
+
+/* Event card */
+.event-card{
+  background:rgba(255,255,255,0.05);border:2px solid #7b2d8b;
+  padding:16px;margin-bottom:12px;
+}
+.event-card-title{font-size:clamp(8px,1.8vw,11px);color:#ff6b8a;margin-bottom:12px;}
+.event-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;}
+.event-icon{font-size:14px;flex-shrink:0;margin-top:2px;}
+.event-detail{font-family:'VT323',monospace;font-size:clamp(14px,3.5vw,18px);color:#e0d0ff;line-height:1.4;}
+
+/* Countdown */
+.countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+.countdown-box{
+  background:#2d1b5e;border:3px solid #7b2d8b;
+  padding:12px 4px;text-align:center;
+}
+.countdown-num{font-size:clamp(18px,5vw,28px);color:#ff6b8a;display:block;line-height:1;}
+.countdown-lbl{font-size:clamp(5px,1.2vw,7px);color:#d4a0ff;margin-top:4px;display:block;}
+
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.gallery-frame{
+  background:rgba(255,255,255,0.05);border:4px solid #7b2d8b;
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  font-size:32px;color:#7b2d8b;
+  position:relative;overflow:hidden;
+}
+.gallery-frame-label{
+  position:absolute;bottom:4px;left:0;right:0;
+  font-family:'VT323',monospace;font-size:12px;color:#d4a0ff;text-align:center;
+}
+
+/* Gift */
+.gift-section{margin-bottom:16px;}
+.gift-label{font-size:clamp(7px,1.4vw,9px);color:#d4a0ff;margin-bottom:8px;}
+.gift-qris{
+  background:#fff;padding:12px;text-align:center;margin-bottom:8px;
+  border:4px solid #7b2d8b;
+}
+.gift-qris-inner{
+  width:140px;height:140px;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+}
+.bank-row{
+  background:#2d1b5e;border:2px solid #7b2d8b;
+  padding:12px;display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:8px;
+}
+.bank-info{font-family:'VT323',monospace;font-size:clamp(14px,3.5vw,18px);color:#e0d0ff;line-height:1.5;}
+.copy-btn{
+  font-family:'Press Start 2P',monospace;font-size:7px;
+  background:#5e3a8a;border:2px solid #d4a0ff;color:#d4a0ff;
+  padding:6px 8px;cursor:pointer;touch-action:manipulation;
+  flex-shrink:0;
+}
+.copy-btn:active{background:#7b2d8b;}
+
+/* RSVP */
+.rsvp-form{display:flex;flex-direction:column;gap:10px;}
+.rsvp-input{
+  font-family:'VT323',monospace;font-size:16px;
+  background:#0d0820;border:2px solid #7b2d8b;
+  color:#e0d0ff;padding:10px 12px;width:100%;
+  outline:none;
+}
+.rsvp-input:focus{border-color:#d4a0ff;}
+.rsvp-textarea{
+  font-family:'VT323',monospace;font-size:16px;
+  background:#0d0820;border:2px solid #7b2d8b;
+  color:#e0d0ff;padding:10px 12px;width:100%;
+  height:80px;resize:none;outline:none;
+}
+.rsvp-radio-group{display:flex;gap:12px;}
+.rsvp-radio-label{
+  font-family:'VT323',monospace;font-size:16px;color:#d4a0ff;
+  display:flex;align-items:center;gap:6px;cursor:pointer;
+}
+.wishes-list{display:flex;flex-direction:column;gap:8px;margin-top:16px;max-height:200px;overflow-y:auto;}
+.wish-item{
+  background:#0d0820;border-left:3px solid #7b2d8b;padding:10px 12px;
+}
+.wish-name{font-size:clamp(6px,1.3vw,8px);color:#d4a0ff;margin-bottom:4px;}
+.wish-text{font-family:'VT323',monospace;font-size:clamp(13px,3vw,16px);color:#e0d0ff;line-height:1.4;}
+.wish-attend{font-size:clamp(5px,1.1vw,7px);color:#ff6b8a;margin-top:4px;}
+
+/* Maps */
+.map-embed{width:100%;height:220px;border:3px solid #7b2d8b;display:block;}
+.map-btn{
+  font-family:'Press Start 2P',monospace;font-size:8px;
+  background:#2d1b5e;border:3px solid #7b2d8b;color:#d4a0ff;
+  padding:12px 16px;cursor:pointer;display:block;width:100%;
+  margin-top:10px;text-align:center;text-decoration:none;touch-action:manipulation;
+}
+.map-btn:hover{background:#3d2b7e;}
+
+/* ===== MOBILE CONTROLS ===== */
+#ctrl-left,#ctrl-right{
+  position:fixed;bottom:20px;z-index:70;
+  width:52px;height:52px;
+  background:rgba(45,27,94,0.9);
+  border:3px solid rgba(212,160,255,0.7);
+  border-radius:14px;
+  display:none;align-items:center;justify-content:center;
+  cursor:pointer;user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.1);
+  font-size:20px;color:#d4a0ff;
+  font-family:'Press Start 2P',monospace;
+}
+#ctrl-left{left:20px;}
+#ctrl-right{right:20px;}
+#ctrl-left:active,#ctrl-right:active{
+  background:rgba(123,45,139,0.9);
+  transform:scale(0.93);
+  box-shadow:0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* ===== MINI MAP ===== */
+#minimap{
+  position:fixed;top:12px;left:50%;transform:translateX(-50%);
+  background:rgba(10,6,30,0.85);border:2px solid #7b2d8b;
+  padding:5px 10px;z-index:70;display:none;
+  min-width:200px;
+}
+.minimap-bar{width:180px;height:6px;background:#1a0d3d;border:1px solid #7b2d8b;margin:3px 0;}
+.minimap-progress{height:100%;background:#d4a0ff;transition:width 0.3s;}
+.minimap-label{font-size:7px;color:#d4a0ff;text-align:center;}
+.minimap-pos{font-size:6px;color:#7b2d8b;text-align:center;}
 </style>
 </head>
 <body>
-<div id="tr"></div>
 
-<!-- OPENING -->
-<div id="opening">
-  <div class="star-field" id="stars"></div>
-  <div class="o-moon"></div>
-  <div class="lantern"><div class="lantern-body"><div class="lantern-glow"></div></div></div>
-  <div class="lantern"><div class="lantern-body"><div class="lantern-glow"></div></div></div>
-  <div class="o-hearts">
-    <svg width="16" height="16" style="animation:hpop 1.2s steps(1) infinite"><rect x="2" y="4" width="4" height="4" fill="#ff69b4"/><rect x="8" y="4" width="4" height="4" fill="#ff69b4"/><rect x="0" y="6" width="14" height="4" fill="#ff69b4"/><rect x="2" y="10" width="10" height="2" fill="#ff69b4"/><rect x="4" y="12" width="6" height="2" fill="#ff69b4"/><rect x="6" y="14" width="2" height="2" fill="#ff69b4"/></svg>
-    <svg width="16" height="16" style="animation:hpop 1.2s .4s steps(1) infinite"><rect x="2" y="4" width="4" height="4" fill="#e8c5ff"/><rect x="8" y="4" width="4" height="4" fill="#e8c5ff"/><rect x="0" y="6" width="14" height="4" fill="#e8c5ff"/><rect x="2" y="10" width="10" height="2" fill="#e8c5ff"/><rect x="4" y="12" width="6" height="2" fill="#e8c5ff"/><rect x="6" y="14" width="2" height="2" fill="#e8c5ff"/></svg>
-    <svg width="16" height="16" style="animation:hpop 1.2s .8s steps(1) infinite"><rect x="2" y="4" width="4" height="4" fill="#ff69b4"/><rect x="8" y="4" width="4" height="4" fill="#ff69b4"/><rect x="0" y="6" width="14" height="4" fill="#ff69b4"/><rect x="2" y="10" width="10" height="2" fill="#ff69b4"/><rect x="4" y="12" width="6" height="2" fill="#ff69b4"/><rect x="6" y="14" width="2" height="2" fill="#ff69b4"/></svg>
-  </div>
-  <div class="o-title">Fulan<br>&amp;<br>Fulanah</div>
-  <div class="o-divider"><span>♦ ♦ ♦</span></div>
-  <div class="o-date" style="margin-top:8px">28 . 02 . 2026</div>
-  <button id="open-btn" class="btn-anim">▶ BUKA UNDANGAN</button>
-</div>
-
-<!-- GAME -->
-<div id="game"><canvas id="gc"></canvas></div>
-
-<!-- HUD -->
-<div id="hud">
-  <div id="hud-bar">
-    <div id="hud-loc">🏡 Desa Cinta</div>
-    <div id="hud-tip">Dekati bangunan → tekan AKSI</div>
+<!-- OPENING SCREEN -->
+<div id="screen-open">
+  <canvas id="open-canvas"></canvas>
+  <div class="open-content">
+    <div class="open-eyebrow">✦ YOU ARE INVITED ✦</div>
+    <div class="open-title">The Wedding Of</div>
+    <div class="open-title" style="color:#ff6b8a;">Design <span style="color:#fff;">♥</span> Preset</div>
+    <div class="open-hearts">♥ ♥ ♥</div>
+    <div class="open-date">28 . 02 . 2026</div>
+    <button class="open-btn" id="btn-enter">✦ Enter World ✦</button>
   </div>
 </div>
 
-<!-- INTERACT BUBBLE -->
-<div id="ibubble">▲ AKSI</div>
-
-<!-- DIALOG -->
-<div id="dlg">
-  <div class="dlg-inner">
-    <div id="dlg-name">???</div>
-    <div id="dlg-text"></div>
-    <div id="dlg-choices"></div>
-    <div id="dlg-arrow">▼</div>
-  </div>
+<!-- GAME WORLD -->
+<div id="game-wrap">
+  <canvas id="game-canvas"></canvas>
 </div>
 
-<!-- POPUP -->
-<div id="pop">
-  <div id="pop-box">
-    <div id="pop-head">
-      <div id="pop-title">INFO</div>
-      <button id="pop-x">✕ TUTUP</button>
-    </div>
-    <div id="pop-body"></div>
-  </div>
+<!-- INTERACTION HINT -->
+<div id="interact-hint">⬆ TAP to interact</div>
+
+<!-- MOBILE CONTROLS -->
+<button id="ctrl-left" aria-label="Move Left">◀</button>
+<button id="ctrl-right" aria-label="Move Right">▶</button>
+
+<!-- MINI MAP -->
+<div id="minimap">
+  <div class="minimap-label">World Progress</div>
+  <div class="minimap-bar"><div class="minimap-progress" id="mm-prog"></div></div>
+  <div class="minimap-pos" id="mm-pos">Welcome Gate</div>
 </div>
 
-<!-- CONTROLS -->
-<div id="controls">
-  <div id="dpad">
-    <div class="db" id="dl">◀</div>
-    <div class="db" id="dr">▶</div>
-    <div class="db" id="du">▲</div>
-    <div class="db" id="dd">▼</div>
+<!-- POPUP OVERLAY -->
+<div id="popup-overlay">
+  <div id="popup-box">
+    <button class="popup-close" id="popup-close-btn">✕ Close</button>
+    <div id="popup-content" class="popup-inner"></div>
   </div>
-  <button id="abtn">✦<br>AKSI</button>
 </div>
-<button id="mbtn">♪ ON</button>
 
 <script>
-// ============================================================
-// STARS
-// ============================================================
+// =====================================================
+// OPENING SCREEN STARFIELD
+// =====================================================
 (function(){
-  const sf=document.getElementById('stars');
-  for(let i=0;i<100;i++){
-    const d=document.createElement('div');
-    d.className='px-star';
-    const sz=Math.random()<.25?3:Math.random()<.5?2:1;
-    Object.assign(d.style,{
-      width:sz+'px',height:sz+'px',
-      left:Math.random()*100+'%',top:Math.random()*100+'%',
-      animation:`twk ${1+Math.random()*2}s ${Math.random()*3}s steps(1) infinite`
-    });
-    sf.appendChild(d);
+  const cvs = document.getElementById('open-canvas');
+  const ctx = cvs.getContext('2d');
+  let stars = [], hearts = [], W, H;
+  function resize(){
+    W = cvs.width = window.innerWidth;
+    H = cvs.height = window.innerHeight;
   }
+  resize();
+  window.addEventListener('resize', resize);
+  for(let i=0;i<80;i++) stars.push({x:Math.random()*2000,y:Math.random()*2000,s:Math.random()*2+1,o:Math.random()});
+  function drawStar(x,y,s,o){
+    ctx.save();ctx.globalAlpha=o;ctx.fillStyle='#d4a0ff';
+    ctx.fillRect(Math.floor(x),Math.floor(y),Math.ceil(s),Math.ceil(s));
+    ctx.restore();
+  }
+  let t=0;
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    t+=0.02;
+    stars.forEach(s=>{
+      const o = 0.3 + 0.7*Math.abs(Math.sin(t + s.x*0.01));
+      drawStar(s.x % W, s.y % H, s.s, o);
+    });
+    requestAnimationFrame(loop);
+  }
+  loop();
 })();
 
-// ============================================================
-// AUDIO
-// ============================================================
-let AC=null,musicOn=false,musicTimer=null;
-function initAC(){try{AC=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
-function pn(f,t,dur,v=.1){
-  if(!AC)return;
-  try{
-    const o=AC.createOscillator(),g=AC.createGain();
-    o.connect(g);g.connect(AC.destination);
-    o.type='square';o.frequency.value=f;
-    const n=AC.currentTime;
-    g.gain.setValueAtTime(0,n+t);g.gain.linearRampToValueAtTime(v,n+t+.01);
-    g.gain.linearRampToValueAtTime(0,n+t+dur-.01);
-    o.start(n+t);o.stop(n+t+dur);
-  }catch(e){}
+// =====================================================
+// MAIN GAME ENGINE
+// =====================================================
+const CVS = document.getElementById('game-canvas');
+const CTX = CVS.getContext('2d');
+let W, H;
+
+function resize(){
+  W = CVS.width = window.innerWidth;
+  H = CVS.height = window.innerHeight;
 }
-const BGM=[[523,.0],[659,.3],[784,.6],[1047,.9],[784,1.2],[659,1.5],[523,1.8],[440,2.1],[523,2.4],[659,2.7],[784,3.0],[659,3.3],[523,3.6],[440,3.9],[392,4.2],[440,4.5],[523,4.8],[659,5.1],[784,5.4],[1047,5.7],[880,6.0],[784,6.3],[659,6.6],[523,6.9]];
-function startBGM(){BGM.forEach(([f,t])=>pn(f,t,.25,.08));musicTimer=setInterval(()=>{if(musicOn)BGM.forEach(([f,t])=>pn(f,t,.25,.08));},7200);}
-function stopBGM(){clearInterval(musicTimer);}
-function toggleMusic(){musicOn=!musicOn;document.getElementById('mbtn').textContent=musicOn?'♪ ON':'♪ OFF';musicOn?startBGM():stopBGM();}
-document.getElementById('mbtn').addEventListener('click',toggleMusic);
+resize();
+window.addEventListener('resize', resize);
 
-// ============================================================
-// CANVAS SETUP
-// ============================================================
-let CV,CX,W,H;
-function setupCanvas(){
-  CV=document.getElementById('gc');CX=CV.getContext('2d');
-  CX.imageSmoothingEnabled=false;
-  function rsz(){W=CV.width=window.innerWidth;H=CV.height=window.innerHeight;}
-  rsz();window.addEventListener('resize',rsz);
+// =====================================================
+// PIXEL DRAWING UTILITIES
+// =====================================================
+function px(x,y,w,h,color){CTX.fillStyle=color;CTX.fillRect(Math.round(x),Math.round(y),w,h);}
+function pxLine(x1,y1,x2,y2,color,thick=2){
+  CTX.strokeStyle=color;CTX.lineWidth=thick;
+  CTX.beginPath();CTX.moveTo(Math.round(x1),Math.round(y1));CTX.lineTo(Math.round(x2),Math.round(y2));CTX.stroke();
 }
-
-// ============================================================
-// PIXEL ART DRAWING HELPERS
-// ============================================================
-function px(x,y,w,h,col){CX.fillStyle=col;CX.fillRect(Math.round(x),Math.round(y),w,h);}
-
-// DRAW DETAILED SKY GRADIENT
-function drawSky(){
-  const grad=CX.createLinearGradient(0,0,0,H*.7);
-  grad.addColorStop(0,'#2d1b69');grad.addColorStop(.4,'#4a2585');grad.addColorStop(.7,'#7b3fa0');grad.addColorStop(1,'#3a1060');
-  CX.fillStyle=grad;CX.fillRect(0,0,W,H);
+function pxText(text,x,y,color,size=8,font='Press Start 2P'){
+  CTX.font=`${size}px '${font}', monospace`;
+  CTX.fillStyle=color;CTX.fillText(text,Math.round(x),Math.round(y));
+}
+function pxTextCenter(text,cx,y,color,size=8,font='Press Start 2P'){
+  CTX.font=`${size}px '${font}', monospace`;
+  const tw = CTX.measureText(text).width;
+  pxText(text,cx-tw/2,y,color,size,font);
+}
+function pxTextShadow(text,cx,y,color,shadow,size=8){
+  pxTextCenter(text,cx+2,y+2,shadow,size);
+  pxTextCenter(text,cx,y,color,size);
 }
 
-// STARS IN BG
-const BG_STARS=[];
-for(let i=0;i<60;i++)BG_STARS.push({x:Math.random(),y:Math.random()*.55,s:Math.random()<.2?2:1,t:Math.random()*Math.PI*2});
+// =====================================================
+// WORLD CONFIG
+// =====================================================
+const GROUND_Y_RATIO = 0.72; // ground at 72% height
+const TILE = 32;
+const WORLD_WIDTH = 8000;
+const SECTION_POSITIONS = [300,1100,2000,2900,3800,4700,5600,6500,7200];
+const SECTION_NAMES = ['Welcome Gate','Love Letter','Love Story','Gallery','Event Details','Maps','Gift Registry','RSVP & Wishes','Thank You'];
 
-function drawBGStars(t){
-  BG_STARS.forEach(s=>{
-    const alpha=.4+.6*Math.abs(Math.sin(s.t+t*.5));
-    CX.fillStyle=`rgba(255,255,255,${alpha})`;
-    CX.fillRect(s.x*W,s.y*H,s.s,s.s);
-  });
-}
-
-// MOON
-function drawMoon(ox){
-  const mx=W*.75-ox*.1,my=H*.08;
-  px(mx,my,40,40,'#ffeaa0');px(mx+4,my+4,40,40,'rgba(0,0,0,0)');
-  // craters
-  px(mx+8,my+8,6,6,'#e8d060');px(mx+22,my+16,4,4,'#e8d060');px(mx+12,my+24,4,4,'#e8d060');
-  // glow
-  CX.fillStyle='rgba(255,234,160,.08)';CX.fillRect(mx-16,my-16,72,72);
-}
-
-// MOUNTAIN LAYERS
-function drawMountains(ox){
-  const off1=ox*.05,off2=ox*.08,off3=ox*.12;
-  // far mountain
-  CX.fillStyle='#2a1550';
-  drawMountainShape(W*.1-off1,H*.52,W*.5,H*.28);
-  drawMountainShape(W*.4-off1,H*.52,W*.45,H*.24);
-  drawMountainShape(W*.65-off1,H*.52,W*.5,H*.3);
-  // mid mountain
-  CX.fillStyle='#1e0e40';
-  drawMountainShape(W*.0-off2,H*.6,W*.4,H*.22);
-  drawMountainShape(W*.3-off2,H*.6,W*.5,H*.26);
-  drawMountainShape(W*.7-off2,H*.6,W*.4,H*.2);
-  // near mountain
-  CX.fillStyle='#150930';
-  drawMountainShape(-off3,H*.68,W*.3,H*.18);
-  drawMountainShape(W*.25-off3,H*.68,W*.35,H*.2);
-  drawMountainShape(W*.55-off3,H*.68,W*.3,H*.18);
-  drawMountainShape(W*.8-off3,H*.68,W*.28,H*.16);
-}
-
-function drawMountainShape(x,y,w,h){
-  CX.beginPath();CX.moveTo(x,y+h);CX.lineTo(x+w*.5,y);CX.lineTo(x+w,y+h);CX.closePath();CX.fill();
-}
-
-// GROUND
-function drawGround(){
-  // dark ground base
-  const gy=H*.72;
-  px(0,gy,W,H-gy,'#0d0620');
-  // grass strip
-  px(0,gy,W,12,'#2d7a1f');
-  // grass highlights
-  for(let x=0;x<W;x+=8){px(x,gy,4,6,Math.random()<.3?'#3d9a2f':'#2d7a1f');}
-  // path
-  const ph=H-gy-12;
-  px(0,gy+12,W,ph,'#1a0e35');
-  // path texture
-  for(let x=0;x<W;x+=32){
-    px(x,gy+16,28,2,'rgba(255,255,255,0.04)');
-    px(x+16,gy+24,24,2,'rgba(255,255,255,0.03)');
-  }
-  // floor line pixel art style
-  for(let x=0;x<W;x+=4){
-    if((x/4)%2===0)px(x,gy+11,4,2,'#1d6a0f');
-  }
-}
-
-// LANTERNS on rope
-function drawLanterns(t,ox){
-  const num=8,ropeY=H*.35;
-  for(let i=0;i<num;i++){
-    const lx=((i/(num-1))*(W*1.8)-W*.4-ox*.3+W*10)%(W*1.8)-W*.4;
-    const sway=Math.sin(t+i*.7)*.5;
-    const ly=ropeY+sway*8+i%2*12;
-    // rope
-    if(i<num-1){
-      const nx=((i+1)/(num-1))*(W*1.8)-W*.4-ox*.3;
-      CX.strokeStyle='rgba(200,180,100,.5)';CX.lineWidth=1;
-      CX.beginPath();CX.moveTo(lx+6,ly);CX.lineTo(nx+6,ly+2);CX.stroke();
-    }
-    // lantern body
-    px(lx,ly,12,18,'#e85d04');px(lx+2,ly+2,8,14,'#ff8c00');
-    px(lx+4,ly+4,4,8,'rgba(255,255,200,.6)'); // glow
-    px(lx+2,ly,8,4,'#9d2800'); // top cap
-    px(lx+4,ly-4,4,4,'#c8a000'); // string
-    px(lx+2,ly+18,8,3,'#e85d04'); // bottom fringe
-    px(lx+4,ly+21,4,4,'rgba(255,120,0,.4)'); // tassel
-    // glow effect
-    CX.fillStyle='rgba(255,140,0,.06)';CX.fillRect(lx-8,ly-4,28,30);
-  }
-}
-
-// DETAILED TREES
-function drawTree(x,y,scale=1){
-  const s=scale;
-  const tx=x,ty=y;
-  // trunk
-  px(tx+10*s,ty+32*s,8*s,20*s,'#6b3d1e');
-  px(tx+12*s,ty+32*s,4*s,20*s,'#8b5e3c');
-  // root
-  px(tx+6*s,ty+48*s,6*s,4*s,'#5a3015');
-  px(tx+16*s,ty+48*s,6*s,4*s,'#5a3015');
-  // canopy layers
-  px(tx+2*s,ty+20*s,24*s,16*s,'#1a6b10');
-  px(tx,ty+10*s,28*s,14*s,'#2d7a1f');
-  px(tx+2*s,ty+2*s,24*s,12*s,'#3d9a2f');
-  px(tx+6*s,ty-6*s,16*s,12*s,'#4db83f');
-  // highlights
-  px(tx+4*s,ty+4*s,4*s,8*s,'#5dd04f');
-  px(tx+8*s,ty,4*s,4*s,'#6de05f');
-  // dark shading
-  px(tx+20*s,ty+4*s,6*s,24*s,'#1a5a10');
-  px(tx+18*s,ty+20*s,8*s,14*s,'#0d4a08');
-}
-
-// DETAILED HOUSE / BUILDING
-function drawBuilding(x,y,w,h,col,roofCol,label,active){
-  // shadow
-  px(x+6,y+h+4,w+2,8,'rgba(0,0,0,0.4)');
-  // walls
-  px(x,y,w,h,col);
-  // brick pattern
-  for(let row=0;row<Math.floor(h/8);row++){
-    const off=row%2===0?0:8;
-    for(let bx=off;bx<w;bx+=16){
-      px(x+bx,y+row*8,14,6,'rgba(255,255,255,0.04)');
-      px(x+bx,y+row*8,14,1,'rgba(255,255,255,0.08)');
-    }
-  }
-  // wall shading right
-  px(x+w-6,y,6,h,'rgba(0,0,0,0.2)');
-  // wall shading bottom
-  px(x,y+h-6,w,6,'rgba(0,0,0,0.15)');
-  // roof
-  const rx=x-8,ry=y-24;
-  px(rx,ry,w+16,28,roofCol);
-  // roof tiles
-  for(let tx2=rx;tx2<rx+w+16;tx2+=12){
-    px(tx2,ry+4,10,4,'rgba(0,0,0,0.15)');
-    px(tx2+6,ry+12,10,4,'rgba(0,0,0,0.1)');
-    px(tx2,ry+20,10,4,'rgba(0,0,0,0.12)');
-  }
-  // roof highlight
-  px(rx,ry,w+16,3,'rgba(255,255,255,0.15)');
-  // roof shadow underside
-  px(rx,ry+25,w+16,3,'rgba(0,0,0,0.3)');
-  // chimney
-  px(x+w-28,ry-16,12,20,'rgba(0,0,0,0.5)');
-  px(x+w-26,ry-14,8,16,col);
-  // windows
-  const winY=y+12;
-  const wc=Math.max(1,Math.floor(w/48));
-  for(let wi=0;wi<wc;wi++){
-    const wx=x+12+wi*40;
-    px(wx,winY,24,20,'#1a0a3e');// frame dark
-    px(wx+2,winY+2,20,16,'#87ceeb');// glass
-    // window cross
-    px(wx+11,winY+2,2,16,'rgba(0,0,0,0.3)');
-    px(wx+2,winY+9,20,2,'rgba(0,0,0,0.3)');
-    // window shine
-    px(wx+3,winY+3,6,4,'rgba(255,255,255,0.4)');
-    // curtain hint
-    px(wx+2,winY+2,5,14,'rgba(200,150,255,.2)');
-    px(wx+15,winY+2,5,14,'rgba(200,150,255,.2)');
-    // light from window at night
-    CX.fillStyle='rgba(135,206,235,0.05)';
-    CX.fillRect(wx-4,winY+20,32,40);
-  }
-  // door centered
-  const dx=x+w/2-10;
-  const dy2=y+h-36;
-  px(dx,dy2,20,36,'#4a2510');
-  px(dx+2,dy2+2,16,32,'#6b3d1e');// door wood
-  // door arch top
-  px(dx,dy2,20,4,'#6b3d1e');
-  // door knob
-  px(dx+15,dy2+18,3,3,'#ffd700');
-  // door frame
-  px(dx-2,dy2-2,2,38,'#3a1a08');
-  px(dx+20,dy2-2,2,38,'#3a1a08');
-  // sign above
-  const sl=label||'';
-  const sw2=Math.max(80,sl.length*7+20);
-  const sx=x+w/2-sw2/2;
-  const sy2=ry-20;
-  px(sx,sy2,sw2,16,'#1a0a3e');
-  px(sx,sy2,sw2,2,'#7b2d8b');
-  px(sx,sy2+14,sw2,2,'#7b2d8b');
-  px(sx,sy2,2,16,'#7b2d8b');
-  px(sx+sw2-2,sy2,2,16,'#7b2d8b');
-  CX.fillStyle=active?'#ffe066':'#e8c5ff';
-  CX.font='6px "Press Start 2P",monospace';
-  CX.textAlign='center';CX.textBaseline='middle';
-  CX.fillText(sl,x+w/2,sy2+8);
-  // active glow
-  if(active){
-    CX.fillStyle='rgba(255,220,100,.12)';
-    CX.fillRect(x-4,ry-24,w+8,h+28);
-    // pulsing border
-    CX.strokeStyle='rgba(255,220,100,.6)';
-    CX.lineWidth=2;
-    CX.strokeRect(x-2,ry-22,w+4,h+24);
-  }
-}
-
-// DETAILED FLOWER BUSH
-function drawFlowers(x,y){
-  // bush base
-  px(x,y+8,20,8,'#1a6b10');
-  // flowers
-  const fdata=[[0,0,'#ff69b4'],[8,4,'#ff9ef5'],[16,2,'#ffb7d5'],[4,8,'#ff69b4'],[12,6,'#fffacd']];
-  fdata.forEach(([fx,fy,fc])=>{
-    px(x+fx+2,y+fy+2,4,4,'#1a6b10');// stem
-    px(x+fx,y+fy,4,4,fc);px(x+fx+4,y+fy,4,4,fc);
-    px(x+fx,y+fy+4,4,4,fc);px(x+fx+4,y+fy+4,4,4,fc);
-    px(x+fx+2,y+fy+2,4,4,'#fff');// center
-    px(x+fx+2,y+fy+2,2,2,'#ffd700');
-  });
-}
-
-// FENCE DETAIL
-function drawFence(x,y,len){
-  for(let i=0;i<len;i+=16){
-    // post
-    px(x+i,y,4,24,'#8b5e3c');px(x+i+1,y,2,24,'#a0703c');
-    // post cap
-    px(x+i-1,y-2,6,4,'#6b3d1e');
-    // rails
-    if(i+16<=len){
-      px(x+i+4,y+4,12,3,'#c8a06e');px(x+i+4,y+14,12,3,'#c8a06e');
-    }
-  }
-}
-
-// NPC CHARACTER (detailed)
-function drawNPC(x,y,t,isGroom){
-  // shadow
-  CX.fillStyle='rgba(0,0,0,0.25)';CX.fillRect(x-10,y+20,20,6);
-  // shoes
-  px(x-8,y+16,'#2a1a0a');px(x-8,y+16,8,6,'#2a1a0a');
-  px(x+2,y+16,8,6,'#2a1a0a');
-  // pants
-  const pant=isGroom?'#1a1a3a':'#2a0a2a';
-  px(x-8,y+4,7,14,pant);px(x+1,y+4,7,14,pant);
-  // pant highlights
-  px(x-8,y+4,2,14,'rgba(255,255,255,0.08)');
-  // body/suit
-  const suit=isGroom?'#e8e8f0':'#f8c8d8';
-  const suitDark=isGroom?'#c8c8d8':'#d8a8b8';
-  px(x-9,y-12,18,18,suit);
-  // suit lapels
-  px(x-9,y-12,6,18,suitDark);px(x+3,y-12,6,18,suitDark);
-  // tie/bow
-  if(isGroom){px(x-2,y-10,4,12,'#c00030');px(x-3,y-10,2,4,'#e00040');px(x+1,y-10,2,4,'#e00040');}
-  else{px(x-3,y-8,6,8,'#ff69b4');px(x-2,y-10,4,4,'#ff9ef5');}
-  // neck
-  px(x-2,y-14,4,4,'#f0d0b0');
-  // head
-  px(x-6,y-28,12,14,'#f0d0b0');
-  // hair
-  if(isGroom){px(x-6,y-28,12,5,'#2a1a0a');px(x-6,y-28,3,8,'#2a1a0a');}
-  else{
-    px(x-7,y-28,13,4,'#2a1a0a');
-    px(x-7,y-26,3,12,'#2a1a0a');
-    px(x+5,y-26,3,10,'#2a1a0a');
-    // hair decoration
-    px(x-2,y-30,4,4,'#ff69b4');
-  }
-  // face
-  const ey=y-22;
-  px(x-4,ey,2,2,'#1a0a0a');px(x+2,ey,2,2,'#1a0a0a');
-  // smile
-  px(x-3,ey+6,2,1,'#c0705a');px(x-1,ey+7,4,1,'#c0705a');px(x+3,ey+6,2,1,'#c0705a');
-  // blush
-  px(x-6,ey+3,4,2,'rgba(255,150,150,.5)');px(x+2,ey+3,4,2,'rgba(255,150,150,.5)');
-  // arms
-  const armSwing=Math.sin(t*3)*.3;
-  px(x-12,y-10,4,12,'#f0d0b0');// left arm
-  px(x+8,y-10,4,12,'#f0d0b0');// right arm
-  // hands
-  px(x-13,y+2,4,4,'#f0d0b0');px(x+9,y+2,4,4,'#f0d0b0');
-}
-
-// PLAYER CHARACTER
-function drawPlayer(x,y,dir,frame,moving){
-  const fx=Math.round(x),fy=Math.round(y);
-  // shadow
-  CX.fillStyle='rgba(0,0,0,0.3)';CX.fillRect(fx-8,fy+22,16,5);
-  // leg anim
-  const la=moving?Math.sin(frame*.8)*6:0;
-  // shoes
-  px(fx-7+la,fy+14,8,5,'#2a1a0a');
-  px(fx+1-la,fy+14,8,5,'#2a1a0a');
-  // pants
-  px(fx-7+la,fy+4,6,12,'#1a1a3a');
-  px(fx+1-la,fy+4,6,12,'#1a1a3a');
-  // highlights on pants
-  px(fx-7+la,fy+4,2,10,'rgba(255,255,255,0.1)');
-  // jacket body
-  px(fx-8,fy-12,16,18,'#7b2d8b');
-  // jacket lapels
-  px(fx-8,fy-12,5,16,'#5a1a6a');px(fx+3,fy-12,5,16,'#5a1a6a');
-  // white shirt visible
-  px(fx-2,fy-12,4,12,'#f0f0ff');
-  // collar
-  px(fx-3,fy-14,6,4,'#f0f0ff');
-  // arms
-  const aw=moving?Math.sin(frame*.8)*4:0;
-  px(fx-12,fy-10-aw,4,14,'#7b2d8b');
-  px(fx+8,fy-10+aw,4,14,'#7b2d8b');
-  px(fx-13,fy+4,5,5,'#f0d0b0');// left hand
-  px(fx+8,fy+4,5,5,'#f0d0b0');// right hand
-  // neck
-  px(fx-2,fy-16,4,5,'#f0d0b0');
-  // head
-  px(fx-7,fy-30,14,14,'#f0d0b0');
-  // hair
-  px(fx-7,fy-30,14,5,'#2a1a0a');
-  px(fx-7,fy-28,3,8,'#2a1a0a');
-  // eyes
-  if(dir==='left'){px(fx-5,fy-23,2,2,'#1a0a0a');}
-  else if(dir==='right'){px(fx+3,fy-23,2,2,'#1a0a0a');}
-  else{px(fx-4,fy-23,2,2,'#1a0a0a');px(fx+2,fy-23,2,2,'#1a0a0a');}
-  // blush
-  px(fx-7,fy-21,4,2,'rgba(255,150,150,.4)');px(fx+3,fy-21,4,2,'rgba(255,150,150,.4)');
-  // smile
-  px(fx-2,fy-18,4,1,'#c0705a');
-}
-
-// ============================================================
-// WORLD / MAP DESIGN
-// ============================================================
-// Side-scrolling: world is WIDE, player walks left/right
-// Sections are placed horizontally
-const SECTIONS=[
-  {id:'home',   x:0,    label:'🏡 Rumah', col:'#7b3a2e', roof:'#8b2020'},
-  {id:'galeri', x:520,  label:'📷 Galeri', col:'#2e5a7b', roof:'#1a3a5a'},
-  {id:'story',  x:1080, label:'💌 Kisah',  col:'#4a2e7b', roof:'#2a1a5a'},
-  {id:'acara',  x:1640, label:'📅 Acara',  col:'#7b4a1a', roof:'#5a3010'},
-  {id:'lokasi', x:2200, label:'📍 Lokasi', col:'#1a6b3a', roof:'#0d4a25'},
-  {id:'rsvp',   x:2760, label:'✉ RSVP',   col:'#6b1a5a', roof:'#4a0a3a'},
-];
-const WORLD_W=3400;
-const GROUND_Y_RATIO=0.72;
-const BLDG_W=200,BLDG_H=160;
-
-// player
-let pl={x:180,dir:'right',frame:0,ft:0,moving:false};
-let camX=0;
-let keys={},td={l:false,r:false};
-let nearSection=null,dlgActive=false,dlgQueue=[],dlgTyper=null;
-let rsvpList=[];
-let galIdx=0;
-let fc=0,lastT2=0;
-
-// floating particles
-let petals=[];
-let cdInterval=null;
-
-// ============================================================
-// MAIN GAME LOOP
-// ============================================================
-function gameLoop(ts){
-  requestAnimationFrame(gameLoop);
-  const dt=Math.min((ts-lastT2)/16.67,3);lastT2=ts;fc++;
-  const t=ts/1000;
-
-  const GY=H*GROUND_Y_RATIO;
-  const playerY=GY;
-
-  // === INPUT ===
-  const moving=(keys['ArrowLeft']||keys['a']||td.l)||(keys['ArrowRight']||keys['d']||td.r);
-  if((keys['ArrowLeft']||keys['a']||td.l)&&!dlgActive&&!document.getElementById('pop').classList.contains('on')){
-    pl.x=Math.max(60,pl.x-3);pl.dir='left';
-  }
-  if((keys['ArrowRight']||keys['d']||td.r)&&!dlgActive&&!document.getElementById('pop').classList.contains('on')){
-    pl.x=Math.min(WORLD_W-60,pl.x+3);pl.dir='right';
-  }
-  pl.moving=moving&&!dlgActive;
-
-  // player anim frame
-  if(pl.moving){pl.ft++;if(pl.ft>5){pl.frame++;pl.ft=0;}}else{pl.frame=0;pl.ft=0;}
-
-  // smooth camera follow
-  const targetCam=pl.x-W/2;
-  camX+=(Math.max(0,Math.min(targetCam,WORLD_W-W))-camX)*.12;
-
-  // === DRAW ===
-  drawSky();
-  drawBGStars(t);
-  drawMoon(camX);
-  drawMountains(camX);
-  drawLanterns(t,camX);
-
-  // parallax mid layer - distant trees
-  for(let i=0;i<20;i++){
-    const tx=(i*200-camX*.3+WORLD_W*10)%( WORLD_W+400)-100;
-    if(tx>-100&&tx<W+60)drawTree(tx,GY*0.82-40,.7);
-  }
-
-  drawGround();
-
-  // fences
-  for(let i=0;i<WORLD_W;i+=320){
-    const fx=i-camX;
-    if(fx>-100&&fx<W+20)drawFence(fx,GY-6,80);
-  }
-
-  // flowers between buildings
-  for(let i=0;i<WORLD_W;i+=90){
-    const flx=i-camX;
-    if(flx>-30&&flx<W+30)drawFlowers(flx,GY-16);
-  }
-
-  // === SECTIONS / BUILDINGS ===
-  nearSection=null;
-  SECTIONS.forEach(s=>{
-    const bx=s.x-camX;
-    if(bx>-BLDG_W-100&&bx<W+100){
-      const dist=Math.abs(pl.x-(s.x+BLDG_W/2));
-      const isNear=dist<130;
-      if(isNear)nearSection=s;
-      // trees around building
-      drawTree(bx-60,GY-52,1);
-      drawTree(bx+BLDG_W+20,GY-52,1);
-      drawBuilding(bx,GY-BLDG_H,BLDG_W,BLDG_H,s.col,s.roof,s.label,isNear);
-    }
-  });
-
-  // player NPCs near some buildings
-  SECTIONS.forEach((s,i)=>{
-    if(i===0){// home section has couple
-      const nx=s.x+BLDG_W*.35-camX;
-      const ny=GY-4;
-      if(nx>-40&&nx<W+40){drawNPC(nx,ny,t,true);drawNPC(nx+36,ny,t,false);}
-    }
-  });
-
-  // petals
-  if(Math.random()<.02)petals.push({x:Math.random()*W,y:-10,vx:(Math.random()-.5)*.6,vy:.6+Math.random()*.4,r:0,col:['#ffb7d5','#ffc0cb','#e8c5ff','#fffacd'][Math.floor(Math.random()*4)],life:1});
-  petals=petals.filter(p=>{
-    p.x+=p.vx;p.y+=p.vy;p.r+=.025;p.life-=.0022;
-    CX.save();CX.translate(p.x,p.y);CX.rotate(p.r);CX.globalAlpha=p.life*.8;
-    px(-3,-3,6,6,p.col);CX.restore();
-    return p.life>0&&p.y<H+20;
-  });
-
-  // player
-  drawPlayer(pl.x-camX,playerY,pl.dir,pl.frame,pl.moving);
-
-  // interact bubble above player
-  if(nearSection&&!dlgActive&&!document.getElementById('pop').classList.contains('on')){
-    const bx=pl.x-camX,by=playerY-60;
-    document.getElementById('ibubble').style.display='block';
-    document.getElementById('ibubble').style.left=(bx-40)+'px';
-    document.getElementById('ibubble').style.top=(by-30)+'px';
-    document.getElementById('ibubble').textContent='▲ '+nearSection.label;
-  } else {
-    document.getElementById('ibubble').style.display='none';
-  }
-}
-
-// ============================================================
-// DIALOG SYSTEM
-// ============================================================
-function showDlg(name,lines,cb){
-  dlgActive=true;dlgQueue=[...lines];
-  const dlg=document.getElementById('dlg');
-  dlg.style.display='block';
-  document.getElementById('dlg-name').textContent=name;
-  document.getElementById('dlg-choices').innerHTML='';
-  document.getElementById('dlg-arrow').style.display='block';
-  typeLine(dlgQueue.shift(),cb);
-}
-function typeLine(line,cb){
-  const el=document.getElementById('dlg-text');
-  el.textContent='';el._full=line;el._cb=cb;
-  let i=0;
-  if(dlgTyper)clearInterval(dlgTyper);
-  dlgTyper=setInterval(()=>{
-    el.textContent=line.slice(0,++i);
-    if(i>=line.length){clearInterval(dlgTyper);dlgTyper=null;el._full=null;}
-  },24);
-}
-function advanceDlg(){
-  const el=document.getElementById('dlg-text');
-  if(dlgTyper){clearInterval(dlgTyper);dlgTyper=null;if(el._full){el.textContent=el._full;el._full=null;}return;}
-  if(dlgQueue.length>0){typeLine(dlgQueue.shift(),el._cb);}
-  else{
-    document.getElementById('dlg').style.display='none';
-    dlgActive=false;
-    if(el._cb)el._cb();
-  }
-}
-
-// ============================================================
-// POPUP
-// ============================================================
-function openPopup(title,html){
-  document.getElementById('pop-title').textContent=title;
-  document.getElementById('pop-body').innerHTML=html;
-  document.getElementById('pop').classList.add('on');
-  document.getElementById('pop-box').scrollTop=0;
-}
-function closePopup(){document.getElementById('pop').classList.remove('on');clearInterval(cdInterval);}
-document.getElementById('pop-x').addEventListener('click',closePopup);
-document.getElementById('pop-x').addEventListener('touchend',e=>{e.preventDefault();closePopup();});
-
-// ============================================================
-// SECTION INTERACTIONS
-// ============================================================
-function interact(){
-  if(document.getElementById('pop').classList.contains('on')){closePopup();return;}
-  if(dlgActive){advanceDlg();return;}
-  if(!nearSection)return;
-  switch(nearSection.id){
-    case 'home':    doHome();break;
-    case 'galeri':  doGallery();break;
-    case 'story':   doStory();break;
-    case 'acara':   doAcara();break;
-    case 'lokasi':  doLokasi();break;
-    case 'rsvp':    doRSVP();break;
-  }
-}
-
-function doHome(){
-  showDlg('💜 Fulan & Fulanah',[
-    'Assalamu\'alaikum, selamat datang!',
-    'Kami mengundang kamu ke hari paling bahagia dalam hidup kami.',
-    'Jelajahi desa ini untuk melihat semua info pernikahan kami ✨',
-    'Gunakan tombol ◀ ▶ untuk berjalan, dan AKSI untuk berinteraksi!',
-  ]);
-}
-
-const GAL=[
-  {e:'🌸',t:'Pertemuan Pertama',d:'Takdir mempertemukan kami di waktu yang indah.'},
-  {e:'🌹',t:'Momen Spesial',d:'Setiap hari bersama terasa seperti petualangan baru.'},
-  {e:'💍',t:'Lamaran',d:'Dengan cincin dan doa, ia meminta menemaninya selamanya.'},
-  {e:'💑',t:'Tunangan',d:'Menunggu hari suci bersama keluarga tercinta.'},
-  {e:'🕌',t:'28 Februari 2026',d:'Hari yang dinanti-nantikan akhirnya tiba!'},
-];
-function doGallery(){galIdx=0;renderGal();}
-function renderGal(){
-  const g=GAL[galIdx];
-  openPopup('📷 GALERI FOTO',`
-    <div style="text-align:center;padding:12px 0">
-      <div style="font-size:72px;margin:8px 0;filter:drop-shadow(0 0 12px rgba(255,150,200,0.4))">${g.e}</div>
-      <div style="font-size:8px;color:#e8c5ff;margin-bottom:8px">${g.t}</div>
-      <div style="font-size:11px;color:#9b8bbb;margin-bottom:20px;line-height:1.6">${g.d}</div>
-      <div style="display:flex;gap:10px;justify-content:center;align-items:center">
-        <button class="pbtn" style="width:48px" onclick="galNav(-1)">◀</button>
-        <div style="font-size:8px;color:#7b6b9b">${galIdx+1} / ${GAL.length}</div>
-        <button class="pbtn" style="width:48px" onclick="galNav(1)">▶</button>
-      </div>
-      <div style="margin-top:14px;display:flex;gap:6px;justify-content:center">
-        ${GAL.map((_,i)=>`<div onclick="galJump(${i})" style="width:8px;height:8px;background:${i===galIdx?'#e8c5ff':'#4a2a6a'};cursor:pointer"></div>`).join('')}
-      </div>
-    </div>`);
-}
-window.galNav=d=>{galIdx=(galIdx+d+GAL.length)%GAL.length;renderGal();};
-window.galJump=i=>{galIdx=i;renderGal();};
-
-function doStory(){
-  openPopup('💌 KISAH CINTA',`
-    <div style="text-align:center;font-size:24px;margin-bottom:12px">💜</div>
-    <h3>Pertemuan — 2022</h3>
-    <div class="ecard">
-      <div class="ecard-title">Awal yang Indah</div>
-      <p>Takdir mempertemukan dua jiwa yang saling melengkapi. Di sinilah segalanya bermula, dari sebuah senyum sederhana.</p>
-    </div>
-    <h3>Pendekatan — 2023</h3>
-    <div class="ecard">
-      <div class="ecard-title">Mengenal Lebih Dalam</div>
-      <p>Hari-hari berlalu dengan obrolan panjang dan tawa yang tak ada habisnya. Perasaan itu tumbuh perlahan namun pasti.</p>
-    </div>
-    <h3>Lamaran — 2024</h3>
-    <div class="ecard">
-      <div class="ecard-title">Janji Suci</div>
-      <p>Dengan sebuah cincin dan doa yang tulus, ia meminta untuk menemaninya di setiap langkah kehidupan.</p>
-    </div>
-    <h3>Pernikahan — 2026</h3>
-    <div class="ecard">
-      <div class="ecard-title">Hari Bahagia ✨</div>
-      <p>Sabtu, 28 Februari 2026. Hari yang paling dinantikan, di mana dua hati menjadi satu dalam ikatan yang suci.</p>
-    </div>`);
-}
-
-function doAcara(){
-  const tgt=new Date('2026-02-28T08:00:00');
-  function getCD(){
-    const d=Math.max(0,tgt-new Date());
-    return{d:Math.floor(d/864e5),h:Math.floor(d%864e5/36e5),m:Math.floor(d%36e5/6e4),s:Math.floor(d%6e4/1e3)};
-  }
-  const c=getCD();
-  openPopup('📅 DETAIL ACARA',`
-    <div class="ecard">
-      <div class="ecard-title">🕌 AKAD NIKAH</div>
-      <p>📅 Sabtu, 28 Februari 2026</p>
-      <p>⏰ 08.00 WIB — Selesai</p>
-      <p>📍 Masjid Al-Barokah, Bandung</p>
-    </div>
-    <div class="ecard">
-      <div class="ecard-title">🎉 RESEPSI</div>
-      <p>📅 Sabtu, 28 Februari 2026</p>
-      <p>⏰ 11.00 – 15.00 WIB</p>
-      <p>📍 Gedung Serbaguna Al-Barokah, Bandung</p>
-    </div>
-    <h3>⏳ HITUNG MUNDUR</h3>
-    <div class="cdown">
-      <div class="cu"><span class="cn" id="cd-d">${c.d}</span><span class="cl">HARI</span></div>
-      <div class="cu"><span class="cn" id="cd-h">${c.h}</span><span class="cl">JAM</span></div>
-      <div class="cu"><span class="cn" id="cd-m">${c.m}</span><span class="cl">MNT</span></div>
-      <div class="cu"><span class="cn" id="cd-s">${c.s}</span><span class="cl">DTK</span></div>
-    </div>
-    <p style="font-size:10px;color:#7b6b9b;text-align:center;margin-top:8px">Dress code: Ungu & Putih 💜</p>`);
-  clearInterval(cdInterval);
-  cdInterval=setInterval(()=>{
-    const c=getCD();
-    ['d','h','m','s'].forEach((k,i)=>{const el=document.getElementById('cd-'+k);if(el)el.textContent=[c.d,c.h,c.m,c.s][i];});
-  },1000);
-}
-
-function doLokasi(){
-  openPopup('📍 LOKASI',`
-    <p style="margin-bottom:4px;font-size:10px">Gedung Serbaguna Al-Barokah</p>
-    <p style="font-size:10px;color:#9b8bbb">Jl. Raya Bandung No. 123, Bandung, Jawa Barat</p>
-    <div style="background:#1a0a3e;border:2px solid #7b2d8b;height:130px;display:flex;align-items:center;justify-content:center;margin:14px 0;position:relative">
-      <div style="font-size:36px">📍</div>
-      <div style="position:absolute;bottom:8px;font-size:8px;color:#c9a0dc">Tap tombol di bawah untuk navigasi</div>
-    </div>
-    <button class="pbtn" onclick="window.open('https://maps.google.com/?q=Bandung','_blank')">🗺 GOOGLE MAPS</button>
-    <button class="pbtn" style="margin-top:8px" onclick="window.open('https://waze.com/ul?q=Bandung','_blank')">🚗 NAVIGASI WAZE</button>
-    <div class="ecard" style="margin-top:14px">
-      <div class="ecard-title">🚌 PETUNJUK ARAH</div>
-      <p style="font-size:10px">Dari Stasiun Bandung: 10 menit naik angkot ke arah selatan, turun di perempatan Al-Barokah.</p>
-    </div>`);
-}
-
-function doRSVP(){
-  const list=rsvpList.length===0
-    ?'<p style="color:#7b6b9b;text-align:center;margin-top:8px;font-size:10px">Belum ada ucapan 💜</p>'
-    :rsvpList.map(r=>`<div class="uitem"><div class="uname">${r.nama} ${r.hadir?'✅':'❌'}</div><div class="utext">${r.ucapan}</div></div>`).join('');
-  openPopup('✉ RSVP & UCAPAN',`
-    <div class="ecard">
-      <div class="ecard-title">KONFIRMASI KEHADIRAN</div>
-      <p style="font-size:10px;margin-bottom:0">Mohon konfirmasi kehadiranmu paling lambat 14 Februari 2026.</p>
-    </div>
-    <h3>ISI FORM</h3>
-    <input id="r-nama" placeholder="Nama lengkap kamu...">
-    <select id="r-hadir">
-      <option value="ya">✅ Insya Allah hadir</option>
-      <option value="tidak">❌ Belum bisa hadir</option>
-    </select>
-    <input id="r-tamu" type="number" min="1" max="10" placeholder="Jumlah tamu (termasuk kamu)">
-    <textarea id="r-ucapan" placeholder="Tulis doa & ucapan untuk Fulan & Fulanah..."></textarea>
-    <button class="pbtn" onclick="kirimRSVP()">💌 KIRIM UCAPAN</button>
-    <h3 style="margin-top:18px">💬 UCAPAN & DOA</h3>
-    <div id="ulist">${list}</div>`);
-}
-window.kirimRSVP=function(){
-  const nama=(document.getElementById('r-nama')||{}).value||'';
-  const hadir=(document.getElementById('r-hadir')||{}).value==='ya';
-  const ucapan=(document.getElementById('r-ucapan')||{}).value||'';
-  if(!nama.trim()||!ucapan.trim()){alert('Mohon isi nama dan ucapan ya 💜');return;}
-  rsvpList.unshift({nama:nama.trim(),hadir,ucapan:ucapan.trim()});
-  doRSVP();
+let cam = { x: 0 };
+let player = {
+  x: 200, y: 0,
+  vx: 0,
+  facing: 1, // 1=right,-1=left
+  frame: 0,
+  frameTimer: 0,
+  walking: false,
+  role: 'groom' // groom or bride
 };
 
-// ============================================================
-// INPUT
-// ============================================================
-document.addEventListener('keydown',e=>{
-  keys[e.key]=true;
-  if(e.key==='e'||e.key==='E'||e.key===' '){e.preventDefault();interact();}
-  if(e.key==='Escape')closePopup();
-});
-document.addEventListener('keyup',e=>delete keys[e.key]);
+let floatingHearts = [];
+let birds = [];
+let clouds = [];
+let flowers = [];
+let particles = [];
+let trees = [];
+let tileMap = [];
 
-function dset(d,v){td[d]=v;}
-[['dl','l'],['dr','r'],['du','u'],['dd','d']].forEach(([id,d])=>{
-  const el=document.getElementById(id);if(!el)return;
-  el.addEventListener('touchstart',e=>{e.preventDefault();dset(d,true);},{passive:false});
-  el.addEventListener('touchend',e=>{e.preventDefault();dset(d,false);},{passive:false});
-  el.addEventListener('mousedown',()=>dset(d,true));
-  el.addEventListener('mouseup',()=>dset(d,false));
-  el.addEventListener('mouseleave',()=>dset(d,false));
-});
+let keys = {left:false, right:false};
+let lastInteractable = null;
+let hasEnteredGame = false;
 
-const abtn=document.getElementById('abtn');
-abtn.addEventListener('click',interact);
-abtn.addEventListener('touchend',e=>{e.preventDefault();interact();},{passive:false});
+// Guest name from opening (stub - can be expanded)
+let guestName = 'Dear Guest';
 
-// ============================================================
-// START GAME
-// ============================================================
-function startGame(){
-  const gw=document.getElementById('game');
-  if(gw.style.display==='block')return;
-  initAC();musicOn=true;startBGM();
-  const tr=document.getElementById('tr');
-  tr.classList.add('on');
-  setTimeout(()=>{
-    document.getElementById('opening').style.display='none';
-    gw.style.display='block';
-    document.getElementById('hud').style.display='block';
-    document.getElementById('controls').style.display='block';
-    document.getElementById('mbtn').style.display='block';
-    setupCanvas();
-    lastT2=performance.now();
-    requestAnimationFrame(gameLoop);
-    setTimeout(()=>tr.classList.remove('on'),200);
-    setTimeout(()=>showDlg('🎮 SELAMAT DATANG',[
-      'Assalamu\'alaikum! Selamat datang 💜',
-      'Gunakan ◀ ▶ untuk berjalan menjelajahi desa.',
-      'Saat dekat bangunan, tekan AKSI untuk masuk.',
-      'Ada 6 tempat yang bisa kamu kunjungi. Selamat menjelajah!'
-    ]),500);
-  },500);
+// =====================================================
+// WISHES STORAGE
+// =====================================================
+let wishesList = JSON.parse(localStorage.getItem('wedding_wishes') || '[]');
+function saveWishes(){localStorage.setItem('wedding_wishes', JSON.stringify(wishesList));}
+
+// =====================================================
+// INIT WORLD
+// =====================================================
+function initWorld(){
+  // Clouds
+  for(let i=0;i<18;i++) clouds.push({
+    x: Math.random()*WORLD_WIDTH,
+    y: 30 + Math.random()*90,
+    speed: 0.15 + Math.random()*0.2,
+    w: 60 + Math.random()*80,
+    type: Math.floor(Math.random()*3)
+  });
+  // Birds
+  for(let i=0;i<8;i++) birds.push({
+    x: Math.random()*WORLD_WIDTH,
+    y: 40 + Math.random()*100,
+    speed: 0.4 + Math.random()*0.5,
+    frame: Math.floor(Math.random()*2),
+    fTimer: 0
+  });
+  // Trees
+  for(let i=0;i<40;i++){
+    const forbid = SECTION_POSITIONS.some(s=>Math.abs(s - i*200)<120);
+    if(!forbid) trees.push({x: 100 + i*200 + Math.random()*80, type: Math.floor(Math.random()*3)});
+  }
+  // Flowers
+  for(let i=0;i<80;i++) flowers.push({
+    x: Math.random()*WORLD_WIDTH,
+    type: Math.floor(Math.random()*4),
+    phase: Math.random()*Math.PI*2
+  });
+  // Initial floating hearts
+  for(let i=0;i<5;i++) spawnHeart(Math.random()*W, H*0.5+Math.random()*100);
+  
+  // Ground tiles
+  for(let i=0;i<Math.ceil(WORLD_WIDTH/TILE)+2;i++){
+    tileMap.push({x:i*TILE, type: Math.floor(Math.random()*3)});
+  }
 }
 
-// Button — triple binding
-const obtn=document.getElementById('open-btn');
-obtn.addEventListener('click',startGame);
-obtn.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();startGame();},{passive:false});
-obtn.addEventListener('pointerup',startGame);
+function spawnHeart(x,y){
+  floatingHearts.push({
+    x,y,
+    vx:(Math.random()-0.5)*0.5,
+    vy: -(0.5+Math.random()*0.8),
+    life:1, decay:0.004+Math.random()*0.004,
+    size: 4+Math.floor(Math.random()*8),
+    color: Math.random()<0.5?'#ff6b8a':'#ff98b0'
+  });
+}
+
+// =====================================================
+// PIXEL ART DRAWERS
+// =====================================================
+
+// Sky gradient
+function drawSky(){
+  const gy = CTX.createLinearGradient(0,0,0,H*GROUND_Y_RATIO);
+  gy.addColorStop(0,'#87c8f0');
+  gy.addColorStop(0.4,'#a8daed');
+  gy.addColorStop(0.8,'#c8eef8');
+  gy.addColorStop(1,'#dff5f0');
+  CTX.fillStyle=gy;
+  CTX.fillRect(0,0,W,H*GROUND_Y_RATIO);
+}
+
+// Mountains (parallax layer, slowest)
+function drawMountains(cx){
+  const mx = -cx*0.1;
+  const peaks = [
+    {x:200,w:350,h:220,c1:'#c8d4e0',c2:'#b0bfcc'},
+    {x:500,w:280,h:180,c1:'#d0dde8',c2:'#bfccd6'},
+    {x:800,w:400,h:260,c1:'#b8c8d8',c2:'#a0b4c4'},
+    {x:1100,w:320,h:190,c1:'#ccd8e4',c2:'#b4c4d0'},
+    {x:1500,w:380,h:240,c1:'#c0d0dc',c2:'#aabcc8'},
+  ];
+  peaks.forEach(p=>{
+    const rx = (p.x + mx % (W+400)) - 200;
+    const gy = H*GROUND_Y_RATIO;
+    // Main mountain body
+    CTX.fillStyle=p.c1;
+    CTX.beginPath();
+    CTX.moveTo(rx,gy);
+    CTX.lineTo(rx+p.w*0.5,gy-p.h);
+    CTX.lineTo(rx+p.w,gy);
+    CTX.fill();
+    // Snow cap
+    CTX.fillStyle='#f0f4f8';
+    CTX.beginPath();
+    CTX.moveTo(rx+p.w*0.5-20,gy-p.h+40);
+    CTX.lineTo(rx+p.w*0.5,gy-p.h);
+    CTX.lineTo(rx+p.w*0.5+20,gy-p.h+40);
+    CTX.fill();
+    // Shadow side
+    CTX.fillStyle=p.c2;
+    CTX.beginPath();
+    CTX.moveTo(rx+p.w*0.5,gy-p.h);
+    CTX.lineTo(rx+p.w,gy);
+    CTX.lineTo(rx+p.w*0.6,gy-p.h+80);
+    CTX.fill();
+  });
+}
+
+// Clouds
+function drawClouds(cx){
+  clouds.forEach(c=>{
+    const sx = ((c.x - cx*0.3) % (WORLD_WIDTH+200)) - 100;
+    if(sx < -c.w-20 || sx > W+20) return;
+    const sy = c.y / 800 * H * 0.35;
+    drawPixelCloud(sx, sy, c.w);
+  });
+}
+
+function drawPixelCloud(x,y,w){
+  CTX.fillStyle='rgba(255,255,255,0.88)';
+  // Main body
+  CTX.fillRect(x+w*0.2, y, w*0.6, 14);
+  CTX.fillRect(x+w*0.1, y+6, w*0.8, 14);
+  CTX.fillRect(x, y+10, w, 10);
+  // Bumps
+  CTX.fillRect(x+w*0.25, y-6, w*0.2, 10);
+  CTX.fillRect(x+w*0.5, y-10, w*0.25, 14);
+  CTX.fillRect(x+w*0.7, y-4, w*0.18, 10);
+  // Soft shadow
+  CTX.fillStyle='rgba(180,210,240,0.3)';
+  CTX.fillRect(x+4, y+18, w, 6);
+}
+
+// Background trees / forest layer (parallax)
+function drawBgTrees(cx){
+  const step = 80;
+  const count = Math.ceil(W/step)+4;
+  const offset = ((-cx*0.5) % step) - step;
+  for(let i=0;i<count;i++){
+    const tx = offset + i*step;
+    const ty = H*GROUND_Y_RATIO - 60 - (i%3)*20;
+    drawPixelPineTiny(tx, ty, 0.6);
+  }
+}
+
+function drawPixelPineTiny(x,y,scale){
+  const s = Math.round(scale);
+  CTX.fillStyle='#5a7d3a';
+  CTX.fillRect(x-8, y-40, 16, 20);
+  CTX.fillStyle='#4a6d2a';
+  CTX.fillRect(x-12, y-28, 24, 16);
+  CTX.fillStyle='#3d5c22';
+  CTX.fillRect(x-6, y-14, 12, 14);
+  CTX.fillStyle='#7a5c3a';
+  CTX.fillRect(x-3, y, 6, 8);
+}
+
+// Main game trees
+function drawTree(wx, type){
+  const sx = wx - cam.x;
+  if(sx<-80||sx>W+80) return;
+  const gy = Math.round(H*GROUND_Y_RATIO);
+  if(type===0) drawOakTree(sx, gy);
+  else if(type===1) drawPineTree(sx, gy);
+  else drawCherry(sx, gy);
+}
+
+function drawOakTree(x,y){
+  // trunk
+  px(x-5, y-38, 10, 38, '#7a5c3a');
+  px(x-4, y-38, 8, 6, '#6a4c2a');
+  // crown layers
+  px(x-22, y-78, 44, 20, '#4a7830');
+  px(x-26, y-62, 52, 22, '#5a8840');
+  px(x-20, y-46, 40, 18, '#4a7830');
+  // highlights
+  px(x-18, y-74, 14, 8, '#5a9840');
+  px(x+2, y-70, 10, 6, '#5a9840');
+  // shadow
+  px(x+6, y-58, 16, 20, '#3a6020');
+}
+
+function drawPineTree(x,y){
+  px(x-4,y-36,8,36,'#7a5c3a');
+  // layers top to bottom
+  [[x,y-80,8,14],[x-8,y-68,16,16],[x-14,y-55,28,18],[x-18,y-40,36,20]].forEach(([rx,ry,rw,rh])=>{
+    px(rx-rw/2,ry,rw,rh,'#3d7028');px(rx-rw/2+2,ry+2,rw*0.5,4,'#4d8038');
+  });
+}
+
+function drawCherry(x,y){
+  px(x-4,y-34,8,34,'#8b6044');
+  // Blossom cloud
+  const bloss = '#f4a0c0';
+  px(x-20,y-70,40,18,bloss);px(x-24,y-60,48,20,bloss);
+  px(x-18,y-48,36,18,bloss);
+  // Petals
+  px(x-14,y-74,10,8,'#f8c0d8');px(x+2,y-72,12,6,'#f8c0d8');
+  // Flowers
+  for(let i=0;i<6;i++) px(x-16+i*6, y-62+Math.sin(i)*6, 3, 3, '#fff');
+}
+
+// Houses/buildings
+function drawBuilding(wx,type){
+  const sx = wx - cam.x;
+  if(sx<-160||sx>W+160) return;
+  const gy = Math.round(H*GROUND_Y_RATIO);
+  if(type===0) drawCozyHouse(sx, gy);
+  else if(type===1) drawChurch(sx, gy);
+  else drawShop(sx, gy);
+}
+
+function drawCozyHouse(x,y){
+  // Shadow
+  CTX.fillStyle='rgba(0,0,0,0.1)';CTX.fillRect(x-40,y-2,82,6);
+  // Main wall
+  px(x-36,y-60,72,60,'#e8d0b0');px(x-34,y-58,68,2,'#d0b890');
+  // Roof
+  CTX.fillStyle='#c04848';
+  CTX.beginPath();CTX.moveTo(x-44,y-60);CTX.lineTo(x,y-100);CTX.lineTo(x+44,y-60);CTX.fill();
+  CTX.fillStyle='#a03030';
+  CTX.beginPath();CTX.moveTo(x,y-100);CTX.lineTo(x+44,y-60);CTX.lineTo(x+20,y-70);CTX.fill();
+  // Door
+  px(x-8,y-36,16,36,'#8b5a2b');px(x-6,y-34,12,2,'#6a3a1b');
+  px(x+2,y-22,3,3,'#f0c060');// doorknob
+  // Windows
+  [[x-28,y-48],[x+14,y-48]].forEach(([wx,wy])=>{
+    px(wx,wy,16,14,'#a8d8f0');px(wx+1,wy+1,6,6,'#c8e8f8');
+    px(wx,wy-2,16,3,'#8b5a2b');// frame top
+  });
+  // Chimney
+  px(x+20,y-108,10,32,'#c0a080');px(x+19,y-112,12,6,'#a08060');
+  // Flowers by door
+  px(x-22,y-8,6,8,'#3a7030');px(x-20,y-12,4,4,'#ff6b8a');
+  px(x+18,y-8,6,8,'#3a7030');px(x+20,y-12,4,4,'#ffaa40');
+}
+
+function drawChurch(x,y){
+  CTX.fillStyle='rgba(0,0,0,0.1)';CTX.fillRect(x-52,y-2,106,6);
+  // Walls
+  px(x-48,y-80,96,80,'#f0e8d8');px(x-46,y-78,92,2,'#d8cfc0');
+  // Roof
+  CTX.fillStyle='#8070a0';
+  CTX.beginPath();CTX.moveTo(x-52,y-80);CTX.lineTo(x,y-120);CTX.lineTo(x+52,y-80);CTX.fill();
+  // Steeple
+  px(x-8,y-140,16,42,'#f0e8d8');
+  CTX.fillStyle='#8070a0';
+  CTX.beginPath();CTX.moveTo(x-12,y-140);CTX.lineTo(x,y-168);CTX.lineTo(x+12,y-140);CTX.fill();
+  // Cross
+  px(x-1,y-162,2,12,'#f0d060');px(x-5,y-157,10,2,'#f0d060');
+  // Door arch
+  px(x-12,y-50,24,50,'#c8a0c0');
+  CTX.fillStyle='#8070a0';CTX.beginPath();CTX.arc(x,y-50,12,Math.PI,0);CTX.fill();
+  // Windows
+  [[x-30,y-56],[x+18,y-56]].forEach(([wx,wy])=>{
+    px(wx,wy,12,18,'#d0b8f0');
+    CTX.fillStyle='#8070a0';CTX.beginPath();CTX.arc(wx+6,wy,6,Math.PI,0);CTX.fill();
+  });
+  // Bell
+  px(x-4,y-132,8,8,'#f0c030');
+}
+
+function drawShop(x,y){
+  px(x-38,y-64,76,64,'#f8e8c8');
+  // Awning
+  CTX.fillStyle='#ff8050';CTX.fillRect(x-44,y-68,88,16);
+  for(let i=0;i<7;i++) px(x-44+i*14,y-68,8,16,'#e06030');
+  // Sign
+  px(x-28,y-88,56,20,'#5a3a1a');pxTextCenter('GIFTS',x,y-73,'#f0d080',6);
+  // Window display
+  px(x-30,y-52,28,36,'#a8d8f0');px(x+4,y-52,28,36,'#a8d8f0');
+  // Door
+  px(x-8,y-38,16,38,'#8b5a2b');px(x+2,y-22,3,3,'#f0c060');
+  // Hanging decoration
+  for(let i=0;i<5;i++){px(x-24+i*12,y-70,2,8,'#8b4040');px(x-25+i*12,y-64,4,4,'#ff6b8a');}
+}
+
+// Ground tiles
+function drawGround(){
+  const gy = Math.round(H*GROUND_Y_RATIO);
+  const gh = H - gy;
+  // Top grass stripe
+  px(0, gy, W, 14, '#6aaa40');
+  px(0, gy+2, W, 4, '#7acc50');
+  // Dirt
+  const dirtGrad = CTX.createLinearGradient(0,gy+14,0,H);
+  dirtGrad.addColorStop(0,'#9b7040');
+  dirtGrad.addColorStop(1,'#7a5228');
+  CTX.fillStyle=dirtGrad;CTX.fillRect(0,gy+14,W,gh-14);
+  // Grass tufts
+  const start = Math.floor(cam.x/32)*32 - cam.x;
+  for(let gx=start;gx<W;gx+=32){
+    const wx = gx + cam.x;
+    const seed = Math.floor(wx/32);
+    if((seed*7+3)%5>1){
+      const vx = gx + ((seed*13)%20);
+      px(vx, gy+2, 3, 6, '#5a9a30');
+      px(vx+4, gy, 2, 8, '#6aaa40');
+      px(vx+7, gy+3, 3, 5, '#4a8a28');
+    }
+  }
+  // Ground line
+  px(0, gy+13, W, 2, '#4a8030');
+  // Soil detail
+  px(0, gy+18, W, 2, '#8a6030');
+  px(0, gy+26, W, 2, '#7a5020');
+}
+
+function drawFlowers(){
+  flowers.forEach(f=>{
+    const sx = f.x - cam.x;
+    if(sx<-20||sx>W+20) return;
+    const gy = H*GROUND_Y_RATIO;
+    const sway = Math.sin(Date.now()*0.002 + f.phase)*2;
+    drawPixelFlower(sx+sway, gy-2, f.type);
+  });
+}
+
+function drawPixelFlower(x,y,type){
+  const colors = [['#ff6b8a','#ff98b0'],['#ff9900','#ffcc44'],['#cc44ff','#dd88ff'],['#44aaff','#88ccff']];
+  const [c1,c2] = colors[type%4];
+  // stem
+  px(x, y-10, 2, 10, '#4a8030');
+  // petals
+  px(x-4,y-14,4,4,c1);px(x+2,y-14,4,4,c1);
+  px(x-1,y-17,4,4,c1);px(x-1,y-11,4,4,c1);
+  // center
+  px(x-1,y-14,4,4,c2);
+}
+
+// Birds
+function drawBirds(cx){
+  birds.forEach(b=>{
+    const sx = ((b.x - cx*0.7) % (WORLD_WIDTH)) - 50;
+    if(sx<-50||sx>W+50) return;
+    const sy = b.y / 800 * H * 0.45;
+    // Simple pixel bird: wings up or down
+    CTX.fillStyle='#3a2a1a';
+    if(b.frame===0){
+      // wings up
+      CTX.fillRect(sx-6,sy-2,4,2);
+      CTX.fillRect(sx+2,sy-2,4,2);
+      CTX.fillRect(sx-1,sy,2,3);
+    } else {
+      // wings level
+      CTX.fillRect(sx-6,sy,4,2);
+      CTX.fillRect(sx+2,sy,4,2);
+      CTX.fillRect(sx-1,sy,2,3);
+    }
+  });
+}
+
+// =====================================================
+// SECTION SIGNS / OBJECTS
+// =====================================================
+const sections = [
+  {wx:300, name:'WELCOME GATE', icon:'🌸', type:'welcome', drawFn:'gate'},
+  {wx:1100, name:'LOVE LETTER', icon:'📜', type:'letter', drawFn:'mailbox'},
+  {wx:2000, name:'LOVE STORY', icon:'💕', type:'story', drawFn:'board'},
+  {wx:2900, name:'GALLERY', icon:'🖼', type:'gallery', drawFn:'frames'},
+  {wx:3800, name:'EVENT DETAILS', icon:'📅', type:'event', drawFn:'clock'},
+  {wx:4700, name:'GOOGLE MAPS', icon:'🗺', type:'maps', drawFn:'sign'},
+  {wx:5600, name:'GIFT REGISTRY', icon:'🎁', type:'gift', drawFn:'shop_obj'},
+  {wx:6500, name:'RSVP & WISHES', icon:'✉️', type:'rsvp', drawFn:'mailbox2'},
+  {wx:7200, name:'THANK YOU', icon:'💖', type:'thankyou', drawFn:'arch'},
+];
+
+function drawSectionObjects(){
+  sections.forEach(s=>{
+    const sx = s.wx - cam.x;
+    if(sx < -200 || sx > W+200) return;
+    const gy = Math.round(H*GROUND_Y_RATIO);
+    drawSectionObject(sx, gy, s.drawFn, s.name);
+  });
+}
+
+function drawSectionObject(x, gy, type, label){
+  CTX.save();
+  switch(type){
+    case 'gate': drawWelcomeGate(x,gy); break;
+    case 'mailbox': drawMailbox(x,gy); break;
+    case 'board': drawNoticeboard(x,gy); break;
+    case 'frames': drawPhotoFrames(x,gy); break;
+    case 'clock': drawEventBoard(x,gy); break;
+    case 'sign': drawMapSign(x,gy); break;
+    case 'shop_obj': drawGiftShopObj(x,gy); break;
+    case 'mailbox2': drawRSVPbox(x,gy); break;
+    case 'arch': drawThankYouArch(x,gy); break;
+  }
+  // Label floating above
+  CTX.font="7px 'Press Start 2P', monospace";
+  const tw = CTX.measureText(label).width;
+  const bx = x - tw/2 - 8, by = gy-200;
+  CTX.fillStyle='rgba(45,27,94,0.85)';CTX.fillRect(bx,by,tw+16,18);
+  CTX.strokeStyle='#7b2d8b';CTX.lineWidth=2;CTX.strokeRect(bx,by,tw+16,18);
+  CTX.fillStyle='#d4a0ff';CTX.fillText(label, x-tw/2, by+13);
+  CTX.restore();
+}
+
+function drawWelcomeGate(x,gy){
+  // Two pillars
+  [-60,46].forEach(dx=>{
+    px(x+dx, gy-120, 14, 120, '#e8d0b0');
+    px(x+dx, gy-126, 14, 8, '#c0a880');
+    px(x+dx-2, gy-128, 18, 4, '#d0b890');
+  });
+  // Arch
+  CTX.fillStyle='#c0a880';
+  CTX.beginPath();CTX.arc(x, gy-118, 60, Math.PI, 0);CTX.fill();
+  CTX.fillStyle='#d0b898';
+  CTX.beginPath();CTX.arc(x, gy-118, 52, Math.PI, 0);CTX.fill();
+  // Sign on arch
+  px(x-40, gy-130, 80, 22, '#5e3a0a');
+  pxTextCenter('WELCOME',x,gy-115,'#f0d080',7);
+  // Flower decorations
+  for(let i=0;i<8;i++){
+    const angle = Math.PI - i*(Math.PI/7);
+    const fx = x + Math.cos(angle)*58;
+    const fy = gy-118 + Math.sin(angle)*58;
+    CTX.fillStyle = i%2===0?'#ff6b8a':'#ffaa40';
+    CTX.fillRect(Math.round(fx)-3, Math.round(fy)-3, 6, 6);
+  }
+  // Hanging lanterns
+  [-38,34].forEach(dx=>{
+    px(x+dx-4,gy-105,8,14,'#f0c030');
+    px(x+dx-3,gy-91,6,4,'#e0a020');
+    px(x+dx-1,gy-88,2,6,'#c08010');
+  });
+  // Side bushes
+  px(x-74,gy-24,16,24,'#4a7830');px(x-72,gy-30,12,12,'#5a8840');
+  px(x+60,gy-24,16,24,'#4a7830');px(x+62,gy-30,12,12,'#5a8840');
+}
+
+function drawMailbox(x,gy){
+  // Post
+  px(x-3,gy-60,6,60,'#8b6044');
+  // Box body
+  px(x-18,gy-76,36,30,'#e04030');
+  px(x-16,gy-74,32,6,'#f06050');
+  // Roof curve
+  CTX.fillStyle='#c02020';
+  CTX.beginPath();CTX.ellipse(x, gy-76, 20, 8, 0, Math.PI, 0);CTX.fill();
+  // Door flap
+  px(x-12,gy-68,24,4,'#8b1010');
+  // Flag
+  px(x+18,gy-90,3,34,'#8b6044');
+  px(x+21,gy-90,14,10,'#ff3030');
+  // Heart decoration
+  CTX.fillStyle='#fff';CTX.font="12px serif";CTX.fillText('♥',x-5,gy-60);
+}
+
+function drawNoticeboard(x,gy){
+  // Two posts
+  px(x-38,gy-120,8,120,'#7a5c3a');px(x+30,gy-120,8,120,'#7a5c3a');
+  // Board
+  px(x-42,gy-128,84,80,'#c4a265');
+  px(x-40,gy-126,80,76,'#d4b07a');
+  // Border
+  CTX.strokeStyle='#8b6914';CTX.lineWidth=3;CTX.strokeRect(x-42,gy-128,84,80);
+  // Content
+  px(x-32,gy-118,64,4,'#8b6914');
+  pxTextCenter('LOVE',x,gy-107,'#5e3a0a',8);
+  pxTextCenter('STORY',x,gy-94,'#5e3a0a',8);
+  px(x-32,gy-86,64,4,'#8b6914');
+  // Pin
+  px(x-2,gy-130,4,4,'#e04030');
+  // Chain/string
+  pxLine(x-38,gy-120,x-34,gy-120,'#8b6914',3);
+  pxLine(x+30,gy-120,x+38,gy-120,'#8b6914',3);
+}
+
+function drawPhotoFrames(x,gy){
+  const frames = [[-60,-140],[-18,-130],[24,-145],[-40,-70],[8,-80]];
+  const cols = ['#8b6044','#4a3060','#704828','#6a4050','#3a5070'];
+  frames.forEach(([dx,dy],i)=>{
+    const fw=36,fh=28;
+    px(x+dx-2,gy+dy-2,fw+4,fh+4,cols[i]);
+    px(x+dx,gy+dy,fw,fh,'#a8d8f0');
+    px(x+dx+2,gy+dy+2,fw-4,fh-4,'#c8e8f8');
+    // Random "photo" content
+    CTX.fillStyle=['#f4c0d0','#c0d4f4','#d0f0d0','#f4d4a0','#d0b0f0'][i];
+    CTX.fillRect(x+dx+3,gy+dy+3,fw-6,fh-6);
+    // Person silhouette
+    CTX.fillStyle='rgba(0,0,0,0.2)';
+    CTX.fillRect(x+dx+fw/2-3, gy+dy+4, 6, 10);
+    CTX.beginPath();CTX.arc(x+dx+fw/2,gy+dy+3,4,0,Math.PI*2);CTX.fill();
+  });
+  // Wall/structure behind
+  px(x-80,gy-170,160,2,'#8b6044');
+  px(x-80,gy-170,4,170,'#8b6044');
+  px(x+76,gy-170,4,170,'#8b6044');
+}
+
+function drawEventBoard(x,gy){
+  // Stand
+  px(x-4,gy-120,8,120,'#7a5c3a');
+  px(x-24,gy-6,48,6,'#7a5c3a');
+  // Board
+  px(x-54,gy-130,108,90,'#1a0d3d');
+  CTX.strokeStyle='#7b2d8b';CTX.lineWidth=3;CTX.strokeRect(x-54,gy-130,108,90);
+  // Stars
+  for(let i=0;i<6;i++){
+    CTX.fillStyle='#d4a0ff';
+    CTX.fillRect(x-46+i*16,gy-126,3,3);
+  }
+  pxTextCenter('EVENT',x,gy-112,'#d4a0ff',8);
+  pxTextCenter('DETAILS',x,gy-98,'#d4a0ff',8);
+  // Clock icon
+  CTX.beginPath();CTX.strokeStyle='#ff6b8a';CTX.lineWidth=2;
+  CTX.arc(x, gy-76, 12, 0, Math.PI*2);CTX.stroke();
+  CTX.fillStyle='#ff6b8a';CTX.fillRect(x-1,gy-82,2,8);CTX.fillRect(x,gy-76,6,2);
+}
+
+function drawMapSign(x,gy){
+  // Post
+  px(x-3,gy-100,6,100,'#8b6044');
+  // Sign board
+  px(x-44,gy-112,88,48,'#d4b07a');
+  CTX.strokeStyle='#8b6914';CTX.lineWidth=3;CTX.strokeRect(x-44,gy-112,88,48);
+  // Map grid
+  CTX.strokeStyle='#8b6914';CTX.lineWidth=1;
+  CTX.strokeRect(x-36,gy-104,72,32);
+  for(let i=1;i<3;i++) CTX.strokeRect(x-36,gy-104+i*10,72,1);
+  for(let i=1;i<4;i++) CTX.strokeRect(x-36+i*18,gy-104,1,32);
+  // Location pin
+  CTX.fillStyle='#e04030';CTX.beginPath();CTX.arc(x+8,gy-90,7,0,Math.PI*2);CTX.fill();
+  CTX.fillStyle='#ff5040';CTX.beginPath();CTX.arc(x+8,gy-92,3,0,Math.PI*2);CTX.fill();
+  // Arrow at bottom of post
+  px(x-8,gy-8,16,4,'#8b6044');px(x+8,gy-12,4,12,'#8b6044');
+}
+
+function drawGiftShopObj(x,gy){
+  drawBuilding(x+cam.x, 2); // reuse shop
+}
+
+function drawRSVPbox(x,gy){
+  // Large mailbox-style
+  px(x-3,gy-80,6,80,'#8b6044');
+  // Box
+  px(x-26,gy-100,52,42,'#4a3060');
+  CTX.strokeStyle='#7b2d8b';CTX.lineWidth=2;CTX.strokeRect(x-26,gy-100,52,42);
+  // Lid
+  CTX.fillStyle='#5a4070';CTX.beginPath();
+  CTX.ellipse(x,gy-100,28,8,0,Math.PI,0);CTX.fill();
+  // Slot
+  px(x-12,gy-86,24,4,'#2d1b5e');
+  pxTextCenter('RSVP',x,gy-68,'#d4a0ff',7);
+  // Decorative hearts
+  CTX.fillStyle='#ff6b8a';CTX.font='10px serif';
+  CTX.fillText('♥',x-18,gy-94);CTX.fillText('♥',x+8,gy-92);
+}
+
+function drawThankYouArch(x,gy){
+  // Big wedding arch
+  [-80,62].forEach(dx=>{
+    px(x+dx,gy-180,18,180,'#c0a880');px(x+dx-2,gy-182,22,6,'#a08860');
+  });
+  // Arch span
+  CTX.fillStyle='#c0a880';CTX.beginPath();CTX.arc(x,gy-178,80,Math.PI,0);CTX.fill();
+  CTX.fillStyle='#d0b898';CTX.beginPath();CTX.arc(x,gy-178,68,Math.PI,0);CTX.fill();
+  // Flowers on arch
+  for(let i=0;i<12;i++){
+    const angle = Math.PI - i*(Math.PI/11);
+    const fx = x + Math.cos(angle)*74;
+    const fy = gy-178 + Math.sin(angle)*74;
+    CTX.fillStyle=['#ff6b8a','#ffaa40','#ff98b0','#f4c030'][i%4];
+    CTX.fillRect(Math.round(fx)-4,Math.round(fy)-4,8,8);
+  }
+  // "THANK YOU" banner
+  px(x-52,gy-196,104,24,'#5e3a0a');
+  pxTextCenter('THANK YOU',x,gy-180,'#f0d080',7);
+  // Hearts above
+  CTX.fillStyle='#ff6b8a';CTX.font='16px serif';
+  CTX.fillText('♥',x-8,gy-210);
+}
+
+// =====================================================
+// PLAYER
+// =====================================================
+function drawPlayer(){
+  const px_val = Math.round(W/2);
+  const py_val = Math.round(H*GROUND_Y_RATIO);
+  
+  player.frame += 0.12;
+  
+  if(player.walking){
+    drawWalkingChar(px_val, py_val, player.facing, player.frame);
+  } else {
+    drawIdleChar(px_val, py_val, player.facing, player.frame);
+  }
+  
+  // Name tag
+  CTX.font="7px 'Press Start 2P', monospace";
+  const name = 'Design & Preset';
+  const ntw = CTX.measureText(name).width;
+  CTX.fillStyle='rgba(45,27,94,0.75)';CTX.fillRect(px_val-ntw/2-5,py_val-90,ntw+10,14);
+  CTX.fillStyle='#d4a0ff';CTX.fillText(name,px_val-ntw/2,py_val-79);
+}
+
+function drawIdleChar(x,y,dir,frame){
+  const bob = Math.sin(frame)*2;
+  const f = dir===-1;
+  // Shadow
+  CTX.fillStyle='rgba(0,0,0,0.2)';CTX.fillRect(x-10,y-3,20,5);
+  // Legs
+  px(f?x:x-8, y-14, 8, 14, '#1a0a2e');
+  px(f?x-8:x, y-14, 8, 14, '#1a0a2e');
+  // Body - groom
+  px(x-10, y-38+bob, 20, 26, '#1a0a2e');
+  px(x-8, y-36+bob, 16, 4, '#fff');// shirt
+  // Jacket detail
+  px(x-2,y-36+bob,4,20,'#fff');
+  // Bow tie
+  px(x-4,y-36+bob,4,3,'#ff6b8a');px(x+1,y-36+bob,4,3,'#ff6b8a');
+  // Head
+  px(x-8, y-54+bob, 16, 16, '#f4c090');
+  // Hair
+  px(x-8, y-54+bob, 16, 6, '#3a2010');
+  px(x-10, y-50+bob, 4, 4, '#3a2010');// sideburn
+  // Eyes
+  px(x-4,y-50+bob,3,3,'#2a1a0a');px(x+2,y-50+bob,3,3,'#2a1a0a');
+  // Smile
+  px(x-2,y-43+bob,2,2,'#c07050');px(x+1,y-43+bob,2,2,'#c07050');
+}
+
+function drawWalkingChar(x,y,dir,frame){
+  const walkAnim = Math.sin(frame*2.5);
+  const legL = walkAnim * 6;
+  const legR = -walkAnim * 6;
+  const bodyLean = walkAnim * 1.5;
+  const f = dir===-1;
+  
+  CTX.fillStyle='rgba(0,0,0,0.2)';CTX.fillRect(x-10,y-3,20,5);
+  // Legs
+  px(x-8, y+legL-14, 7, 14, '#1a0a2e');
+  px(x+1, y+legR-14, 7, 14, '#1a0a2e');
+  // Shoe tips
+  px(f?x-10:x+8, y+legL, 6, 4, '#0a0408');
+  // Body
+  px(x-10+bodyLean, y-38, 20, 26, '#1a0a2e');
+  px(x-8+bodyLean, y-36, 16, 4, '#fff');
+  px(x-2+bodyLean,y-36,4,20,'#fff');
+  px(x-4+bodyLean,y-36,4,3,'#ff6b8a');px(x+1+bodyLean,y-36,4,3,'#ff6b8a');
+  // Arms swing
+  px(f?x-14:x+10, y-36+legL, 4, 16, '#1a0a2e');
+  px(f?x+10:x-14, y-36+legR, 4, 16, '#1a0a2e');
+  // Head
+  const headBob = Math.abs(walkAnim)*1.5;
+  px(x-8+bodyLean, y-54+headBob, 16, 16, '#f4c090');
+  px(x-8+bodyLean, y-54+headBob, 16, 6, '#3a2010');
+  px(x-4+bodyLean,y-50+headBob,3,3,'#2a1a0a');px(x+2+bodyLean,y-50+headBob,3,3,'#2a1a0a');
+}
+
+// =====================================================
+// FLOATING HEARTS
+// =====================================================
+function updateHearts(){
+  floatingHearts = floatingHearts.filter(h=>{
+    h.x+=h.vx;h.y+=h.vy;h.life-=h.decay;
+    if(h.life<=0) return false;
+    CTX.save();CTX.globalAlpha=h.life;CTX.fillStyle=h.color;
+    CTX.font=`${h.size}px serif`;CTX.fillText('♥',h.x,h.y);
+    CTX.restore();
+    return true;
+  });
+  // Periodically spawn
+  if(Math.random()<0.015) spawnHeart(W/2 + (Math.random()-0.5)*200, H*0.6);
+}
+
+// =====================================================
+// SECTION PROXIMITY CHECK
+// =====================================================
+function checkProximity(){
+  lastInteractable = null;
+  const hint = document.getElementById('interact-hint');
+  sections.forEach(s=>{
+    const dist = Math.abs(player.x - s.wx);
+    if(dist < 100){
+      lastInteractable = s;
+    }
+  });
+  if(lastInteractable){
+    hint.style.display='block';
+    hint.textContent=`⬆ ${lastInteractable.name}`;
+  } else {
+    hint.style.display='none';
+  }
+}
+
+// =====================================================
+// MINIMAP UPDATE
+// =====================================================
+function updateMinimap(){
+  const prog = document.getElementById('mm-prog');
+  const pos = document.getElementById('mm-pos');
+  const pct = Math.min(100, (player.x / WORLD_WIDTH)*100);
+  prog.style.width = pct+'%';
+  // Find nearest section
+  let nearest = SECTION_NAMES[0];
+  sections.forEach(s=>{
+    if(player.x >= s.wx-150) nearest = s.name;
+  });
+  pos.textContent = nearest;
+}
+
+// =====================================================
+// MAIN GAME LOOP
+// =====================================================
+let lastTime = 0;
+const SPEED = 2.4;
+
+function gameLoop(ts){
+  const dt = ts - lastTime; lastTime = ts;
+  CTX.clearRect(0,0,W,H);
+  
+  // Player movement
+  player.walking = false;
+  if(keys.left && player.x > 100){
+    player.x -= SPEED;
+    player.facing = -1;
+    player.walking = true;
+  }
+  if(keys.right && player.x < WORLD_WIDTH-200){
+    player.x += SPEED;
+    player.facing = 1;
+    player.walking = true;
+  }
+  
+  // Smooth camera follow
+  const targetCam = player.x - W/2;
+  cam.x += (targetCam - cam.x) * 0.08;
+  cam.x = Math.max(0, Math.min(WORLD_WIDTH - W, cam.x));
+  
+  // Draw layers
+  drawSky();
+  drawMountains(cam.x);
+  drawClouds(cam.x);
+  drawBgTrees(cam.x);
+  
+  // Animate clouds
+  clouds.forEach(c=>{ c.x -= c.speed; if(c.x<-200) c.x=WORLD_WIDTH+200; });
+  
+  // Animate birds
+  birds.forEach(b=>{
+    b.x -= b.speed;
+    b.fTimer+=0.05;
+    if(b.fTimer>1){b.fTimer=0;b.frame=b.frame===0?1:0;}
+    if(b.x<-80) b.x=WORLD_WIDTH+80;
+  });
+  drawBirds(cam.x);
+  
+  // Draw world objects
+  drawSectionObjects();
+  trees.forEach(t=>drawTree(t.x, t.type));
+  drawFlowers();
+  drawGround();
+  drawPlayer();
+  updateHearts();
+  
+  // Proximity check
+  checkProximity();
+  updateMinimap();
+  
+  requestAnimationFrame(gameLoop);
+}
+
+// =====================================================
+// POPUP CONTENT GENERATORS
+// =====================================================
+function openSection(s){
+  const overlay = document.getElementById('popup-overlay');
+  const content = document.getElementById('popup-content');
+  overlay.classList.add('show');
+  
+  // Spawn hearts
+  for(let i=0;i<8;i++) spawnHeart(Math.random()*W, H*0.5+Math.random()*100);
+  
+  switch(s.type){
+    case 'welcome': content.innerHTML = welcomeHTML(); break;
+    case 'letter': content.innerHTML = letterHTML(); break;
+    case 'story': content.innerHTML = storyHTML(); break;
+    case 'gallery': content.innerHTML = galleryHTML(); break;
+    case 'event': content.innerHTML = eventHTML(); startCountdown(); break;
+    case 'maps': content.innerHTML = mapsHTML(); break;
+    case 'gift': content.innerHTML = giftHTML(); break;
+    case 'rsvp': content.innerHTML = rsvpHTML(); initRSVP(); break;
+    case 'thankyou': content.innerHTML = thankyouHTML(); break;
+  }
+}
+
+function welcomeHTML(){
+  return `
+  <div class="popup-title">✦ The Wedding Of ✦</div>
+  <div class="scroll-wrapper">
+    <div class="scroll-top"></div>
+    <div class="scroll-text">
+      <div style="font-size:clamp(18px,5vw,26px);font-family:'Press Start 2P',monospace;color:#3d1f00;line-height:1.6;margin-bottom:12px;">
+        Design<br><span style="color:#8b6914;">♥</span><br>Preset
+      </div>
+      <div style="margin:12px 0;font-size:14px;">— Together with their families —</div>
+      <div style="font-size:clamp(14px,3.5vw,18px);margin:8px 0;">joyfully invite you to celebrate</div>
+      <div style="font-size:clamp(14px,3.5vw,18px);">their wedding</div>
+      <hr style="border:2px solid #8b6914;margin:12px 0;">
+      <div style="font-family:'Press Start 2P',monospace;font-size:clamp(10px,2.5vw,13px);color:#5e3a0a;">
+        28 . 02 . 2026
+      </div>
+    </div>
+    <div class="scroll-bottom"></div>
+  </div>`;
+}
+
+function letterHTML(){
+  return `
+  <div class="popup-title">📜 Invitation Letter</div>
+  <div class="scroll-wrapper">
+    <div class="scroll-top"></div>
+    <div class="scroll-text">
+      <div style="font-size:clamp(11px,2.5vw,14px);color:#5e3a0a;margin-bottom:8px;">Kepada Yth.</div>
+      <div style="font-size:clamp(11px,2.5vw,14px);color:#5e3a0a;margin-bottom:4px;">Bapak/Ibu/Saudara/i</div>
+      <div style="font-family:'Press Start 2P',monospace;font-size:clamp(9px,2vw,12px);color:#3d1f00;margin-bottom:4px;">${guestName}</div>
+      <hr style="border:1px solid #8b6914;margin:10px 0;">
+      <div style="font-size:clamp(12px,3vw,15px);line-height:1.8;color:#3d1f00;">
+        <em>Allah's blessing message:</em><br>
+        "And among the signs of His power is that He created for you wives of your own kind, so that you would be inclined and feel at ease with them, and He made among you a feeling of love and affection."<br>
+        <strong>(QS. Ar-Rum: 21)</strong>
+      </div>
+      <hr style="border:1px solid #8b6914;margin:10px 0;">
+      <div style="font-family:'Press Start 2P',monospace;font-size:clamp(8px,2vw,10px);color:#5e3a0a;">Design & Preset</div>
+      <div style="font-size:14px;color:#5e3a0a;margin-top:4px;">28 . 02 . 2026</div>
+    </div>
+    <div class="scroll-bottom"></div>
+  </div>
+  <button class="btn-primary" onclick="closePopup()">✓ Ok, Mengerti</button>`;
+}
+
+function storyHTML(){
+  const items = [
+    {icon:'🌸',label:'First Meet',text:'Two hearts found each other in the most unexpected moment. A smile, a hello, and a spark that never faded.'},
+    {icon:'💌',label:'Growing Closer',text:'Days turned into months of long conversations, shared dreams, and a love that grew stronger each day.'},
+    {icon:'💕',label:'The Proposal',text:'Under the stars, with trembling hands and a full heart — "Will you marry me?" — and the answer was yes.'},
+    {icon:'💍',label:'Engagement',text:'Families came together, blessings were given, and two paths officially became one beautiful journey.'},
+    {icon:'💖',label:'Wedding Day',text:'28.02.2026 — the day two souls make a forever promise in front of God and everyone they love.'},
+  ];
+  return `
+  <div class="popup-title">💕 Our Love Story</div>
+  <div class="timeline">${items.map(i=>`
+    <div class="timeline-item">
+      <span class="timeline-icon">${i.icon}</span>
+      <div class="timeline-label">${i.label}</div>
+      <div class="timeline-text">${i.text}</div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function galleryHTML(){
+  const frames = ['💑','🌸','💍','🎂','💒','🌺'];
+  const captions = ['Together','Blossom','The Ring','Sweet Moments','Our Day','With Love'];
+  return `
+  <div class="popup-title">🖼 Photo Gallery</div>
+  <p style="font-family:'VT323',monospace;font-size:16px;color:#d4a0ff;text-align:center;margin-bottom:12px;">
+    Our precious moments together ✨
+  </p>
+  <div class="gallery-grid">
+    ${frames.map((f,i)=>`
+    <div class="gallery-frame">
+      <span style="font-size:40px;">${f}</span>
+      <div class="gallery-frame-label">${captions[i]}</div>
+    </div>`).join('')}
+  </div>
+  <p style="font-family:'VT323',monospace;font-size:13px;color:#7b2d8b;text-align:center;margin-top:10px;">
+    Replace emoji with your real photos 📸
+  </p>`;
+}
+
+function eventHTML(){
+  return `
+  <div class="popup-title">📅 Event Details</div>
+  <div class="event-card">
+    <div class="event-card-title">💒 Akad Nikah</div>
+    <div class="event-row"><span class="event-icon">📅</span><div class="event-detail">Jumat, 28 Februari 2026</div></div>
+    <div class="event-row"><span class="event-icon">⏰</span><div class="event-detail">08.00 WIB — Selesai</div></div>
+    <div class="event-row"><span class="event-icon">📍</span><div class="event-detail">Masjid Al-Ikhlas<br>Jl. Contoh No.1, Bekasi</div></div>
+  </div>
+  <div class="event-card">
+    <div class="event-card-title">🎊 Resepsi Pernikahan</div>
+    <div class="event-row"><span class="event-icon">📅</span><div class="event-detail">Jumat, 28 Februari 2026</div></div>
+    <div class="event-row"><span class="event-icon">⏰</span><div class="event-detail">11.00 — 15.00 WIB</div></div>
+    <div class="event-row"><span class="event-icon">📍</span><div class="event-detail">Gedung Serbaguna<br>Jl. Contoh No.2, Bekasi</div></div>
+  </div>
+  <div style="font-size:9px;color:#d4a0ff;text-align:center;margin-bottom:6px;">⏳ Counting Down To The Big Day</div>
+  <div class="countdown-grid" id="countdown-grid">
+    <div class="countdown-box"><span class="countdown-num" id="cd-d">--</span><span class="countdown-lbl">DAYS</span></div>
+    <div class="countdown-box"><span class="countdown-num" id="cd-h">--</span><span class="countdown-lbl">HOURS</span></div>
+    <div class="countdown-box"><span class="countdown-num" id="cd-m">--</span><span class="countdown-lbl">MINS</span></div>
+    <div class="countdown-box"><span class="countdown-num" id="cd-s">--</span><span class="countdown-lbl">SECS</span></div>
+  </div>`;
+}
+
+function startCountdown(){
+  const target = new Date('2026-02-28T08:00:00');
+  function tick(){
+    const now = new Date();
+    const diff = target - now;
+    if(diff<=0){
+      document.getElementById('cd-d').textContent='00';
+      document.getElementById('cd-h').textContent='00';
+      document.getElementById('cd-m').textContent='00';
+      document.getElementById('cd-s').textContent='00';
+      return;
+    }
+    const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),
+          m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    ['d','h','m','s'].forEach((k,i)=>{
+      const el=document.getElementById('cd-'+k);
+      if(el) el.textContent=String([d,h,m,s][i]).padStart(2,'0');
+    });
+    setTimeout(tick,1000);
+  }
+  tick();
+}
+
+function mapsHTML(){
+  return `
+  <div class="popup-title">🗺 Venue Location</div>
+  <div style="font-family:'VT323',monospace;font-size:17px;color:#d4a0ff;margin-bottom:8px;text-align:center;">
+    📍 Gedung Serbaguna, Bekasi
+  </div>
+  <iframe
+    class="map-embed"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.84513430000001!3d-6.2087634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sBekasi%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1693456789!5m2!1sen!2sid"
+    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+  <a href="https://maps.google.com" target="_blank" class="map-btn">🗺 Open in Google Maps</a>`;
+}
+
+function giftHTML(){
+  return `
+  <div class="popup-title">🎁 Wedding Gift</div>
+  <p style="font-family:'VT323',monospace;font-size:16px;color:#d4a0ff;text-align:center;margin-bottom:16px;">
+    Your presence is the greatest gift.<br>But if you wish to share more love: 💝
+  </p>
+  <div class="gift-section">
+    <div class="gift-label">📱 QRIS</div>
+    <div class="gift-qris">
+      <div class="gift-qris-inner">
+        <div style="font-size:48px;text-align:center;">⬛<br><span style="font-family:'Press Start 2P',monospace;font-size:8px;color:#333;">QRIS CODE<br>HERE</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="gift-section">
+    <div class="gift-label">🏦 Bank Transfer</div>
+    <div class="bank-row">
+      <div class="bank-info"><strong>BCA</strong><br>1234567890<br>a.n. Design</div>
+      <button class="copy-btn" onclick="copyText('1234567890')">📋 COPY</button>
+    </div>
+    <div class="bank-row">
+      <div class="bank-info"><strong>Mandiri</strong><br>0987654321<br>a.n. Preset</div>
+      <button class="copy-btn" onclick="copyText('0987654321')">📋 COPY</button>
+    </div>
+    <div class="bank-row">
+      <div class="bank-info"><strong>GoPay / OVO</strong><br>08123456789</div>
+      <button class="copy-btn" onclick="copyText('08123456789')">📋 COPY</button>
+    </div>
+  </div>`;
+}
+
+function copyText(text){
+  navigator.clipboard.writeText(text).then(()=>{
+    showToast('✓ Copied: ' + text);
+  }).catch(()=>{
+    const el=document.createElement('textarea');el.value=text;document.body.appendChild(el);
+    el.select();document.execCommand('copy');document.body.removeChild(el);
+    showToast('✓ Copied!');
+  });
+}
+
+function showToast(msg){
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';
+    t.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#2d1b5e;border:2px solid #d4a0ff;color:#d4a0ff;padding:8px 16px;font-size:8px;z-index:300;font-family:\'Press Start 2P\',monospace;';
+    document.body.appendChild(t);}
+  t.textContent=msg;t.style.display='block';
+  clearTimeout(t._to);t._to=setTimeout(()=>t.style.display='none',2000);
+}
+
+function rsvpHTML(){
+  const wishesMarkup = wishesList.length>0 ? wishesList.map(w=>`
+    <div class="wish-item">
+      <div class="wish-name">${escHtml(w.name)} ${w.attend==='hadir'?'✓ Hadir':'✗ Tidak Hadir'}</div>
+      <div class="wish-text">${escHtml(w.message)}</div>
+    </div>`).join('') : '<div style="font-family:VT323,monospace;font-size:15px;color:#7b2d8b;text-align:center;padding:12px;">No wishes yet. Be the first! 💌</div>';
+  
+  return `
+  <div class="popup-title">✉️ RSVP & Wishes</div>
+  <div class="rsvp-form">
+    <input class="rsvp-input" id="rsvp-name" placeholder="Your Name" maxlength="50">
+    <div class="rsvp-radio-group">
+      <label class="rsvp-radio-label"><input type="radio" name="attend" value="hadir" checked> ✓ Hadir</label>
+      <label class="rsvp-radio-label"><input type="radio" name="attend" value="tidak"> ✗ Tidak Hadir</label>
+    </div>
+    <textarea class="rsvp-textarea" id="rsvp-msg" placeholder="Your wishes for the couple... 💌" maxlength="200"></textarea>
+    <button class="btn-primary" onclick="submitRSVP()">💌 Send Wishes</button>
+  </div>
+  <div style="font-size:9px;color:#d4a0ff;margin:16px 0 8px;">💬 Wishes & Messages (${wishesList.length})</div>
+  <div class="wishes-list" id="wishes-list">${wishesMarkup}</div>`;
+}
+
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function initRSVP(){}
+
+function submitRSVP(){
+  const name=document.getElementById('rsvp-name').value.trim();
+  const msg=document.getElementById('rsvp-msg').value.trim();
+  const attend=document.querySelector('input[name="attend"]:checked')?.value||'hadir';
+  if(!name||!msg){showToast('⚠ Please fill in your name and message!');return;}
+  wishesList.unshift({name,message:msg,attend,ts:Date.now()});
+  if(wishesList.length>50) wishesList.pop();
+  saveWishes();
+  document.getElementById('rsvp-name').value='';
+  document.getElementById('rsvp-msg').value='';
+  const list=document.getElementById('wishes-list');
+  const item=document.createElement('div');item.className='wish-item';
+  item.innerHTML=`<div class="wish-name">${escHtml(name)} ${attend==='hadir'?'✓ Hadir':'✗ Tidak Hadir'}</div><div class="wish-text">${escHtml(msg)}</div>`;
+  list.insertBefore(item,list.firstChild);
+  showToast('💌 Wish sent! Thank you!');
+  for(let i=0;i<12;i++) spawnHeart(Math.random()*W,H*0.4+Math.random()*100);
+}
+
+function thankyouHTML(){
+  return `
+  <div class="popup-title">💖 Thank You!</div>
+  <div style="text-align:center;padding:20px 0;">
+    <div style="font-size:48px;margin-bottom:12px;">💑</div>
+    <div style="font-family:'Press Start 2P',monospace;font-size:clamp(10px,2.5vw,14px);color:#fff;margin-bottom:8px;text-shadow:2px 2px 0 #7b2d8b;">
+      Design & Preset
+    </div>
+    <div style="font-family:'VT323',monospace;font-size:clamp(16px,4vw,20px);color:#d4a0ff;line-height:1.7;margin-bottom:12px;">
+      Terima kasih, ${guestName}!<br>
+      Telah menjumpai kita dalam<br>perjalanan dunia pixel ini. 🌸
+    </div>
+    <div style="font-size:24px;margin:12px 0;">♥ ♥ ♥</div>
+    <div style="font-family:'VT323',monospace;font-size:clamp(14px,3.5vw,18px);color:#ff6b8a;">
+      Mohon doa restu &amp; kehadiran Anda<br>
+      di hari bahagia kami.
+    </div>
+    <div style="font-family:'Press Start 2P',monospace;font-size:clamp(8px,2vw,10px);color:#d4a0ff;margin-top:16px;">
+      28 . 02 . 2026
+    </div>
+  </div>
+  <button class="btn-primary" onclick="closePopup();submitWish()">💌 Kirim Doa &amp; Ucapan</button>
+  <button class="btn-primary" style="background:transparent;color:#7b2d8b;border-color:#7b2d8b;margin-top:8px;" onclick="closePopup()">Mungkin Lain Kali</button>`;
+}
+
+function submitWish(){
+  // Redirect to RSVP section
+  const rsvpSection = sections.find(s=>s.type==='rsvp');
+  if(rsvpSection) openSection(rsvpSection);
+}
+
+function closePopup(){
+  document.getElementById('popup-overlay').classList.remove('show');
+}
+
+// =====================================================
+// INPUT HANDLERS
+// =====================================================
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft'||e.key==='a') keys.left=true;
+  if(e.key==='ArrowRight'||e.key==='d') keys.right=true;
+  if(e.key==='ArrowUp'||e.key==='e'||e.key===' '){
+    if(lastInteractable) openSection(lastInteractable);
+  }
+  e.preventDefault();
+});
+document.addEventListener('keyup',e=>{
+  if(e.key==='ArrowLeft'||e.key==='a') keys.left=false;
+  if(e.key==='ArrowRight'||e.key==='d') keys.right=false;
+});
+
+// Mobile controls - press and hold
+const btnL = document.getElementById('ctrl-left');
+const btnR = document.getElementById('ctrl-right');
+
+function setupHold(btn, keyName){
+  btn.addEventListener('touchstart',e=>{e.preventDefault();keys[keyName]=true;},{passive:false});
+  btn.addEventListener('touchend',e=>{e.preventDefault();keys[keyName]=false;});
+  btn.addEventListener('touchcancel',e=>{keys[keyName]=false;});
+  btn.addEventListener('mousedown',e=>{keys[keyName]=true;});
+  btn.addEventListener('mouseup',e=>{keys[keyName]=false;});
+  btn.addEventListener('mouseleave',e=>{keys[keyName]=false;});
+}
+setupHold(btnL,'left');
+setupHold(btnR,'right');
+
+// Tap world to interact when near object
+document.getElementById('game-canvas').addEventListener('click',e=>{
+  if(lastInteractable) openSection(lastInteractable);
+});
+document.getElementById('game-canvas').addEventListener('touchend',e=>{
+  // Only if tap (not drag / movement)
+  if(lastInteractable) openSection(lastInteractable);
+});
+
+// Close popup
+document.getElementById('popup-close-btn').addEventListener('click', closePopup);
+document.getElementById('popup-overlay').addEventListener('click',e=>{
+  if(e.target===document.getElementById('popup-overlay')) closePopup();
+});
+
+// =====================================================
+// ENTER GAME
+// =====================================================
+document.getElementById('btn-enter').addEventListener('click', startGame);
+
+function startGame(){
+  const openScreen = document.getElementById('screen-open');
+  openScreen.style.transition='opacity 0.8s';
+  openScreen.style.opacity='0';
+  setTimeout(()=>{
+    openScreen.style.display='none';
+    document.getElementById('game-wrap').style.display='block';
+    btnL.style.display='flex'; btnR.style.display='flex';
+    document.getElementById('minimap').style.display='block';
+    hasEnteredGame = true;
+    resize();
+    initWorld();
+    requestAnimationFrame(gameLoop);
+    // Auto open welcome after 1s
+    setTimeout(()=>{
+      const welcome = sections.find(s=>s.type==='welcome');
+      if(welcome) openSection(welcome);
+    }, 1200);
+  }, 800);
+}
+
+window.addEventListener('resize', resize);
 </script>
 </body>
 </html>
